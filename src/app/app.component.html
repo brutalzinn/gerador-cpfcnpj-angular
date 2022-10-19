@@ -1,10 +1,33 @@
-<h1>Gerador de CPF CNPJ - Reatividade Angular</h1>
-
+<h1>Gerador de CPF CNPJ</h1>
+<app-header></app-header>
 <module-documento></module-documento>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Documento</th>
+            <th scope="col">Criado em</th>
+            <th scope="col">Usado</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pessoa of pessoas">
+            <th scope="row">1</th>
+            <td> {{ pessoa.document }}</td>
+            <td>{{ pessoa.creatAt.toLocaleString("pt-BR") }}</td>
+            <td>{{ pessoa.used ? "usado" : "não usado" }}</td>
+        </tr>
+        <!-- <li *ngFor="let pessoa of pessoas" class="list-group-item">
+            {{ pessoa.document }}
+            {{ pessoa.creatAt.toLocaleString("pt-BR") }}
+            <button type="button" class="btn btn-light">Marcar usado</button>
+            <button type="button" class="btn btn-light">Copiar Documento</button>
+        </li> -->
+    </tbody>
+</table>
 
 <!-- <button type="submit" (click)="gerarDocumento()">Criar CPFCNPJ</button> -->
 
-<li *ngFor="let pessoa of pessoas">
-    {{ pessoa.document }}
-    {{ pessoa.creatAt.toLocaleString("pt-BR") }}
-</li>
+<app-footer></app-footer>

@@ -1,3 +1,5 @@
+#GAMBIARRA PARA DEPLOY NO DOKKU
+
 FROM node:16 AS ui-build
 WORKDIR /usr/src/app
 COPY . .
