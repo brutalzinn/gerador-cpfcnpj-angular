@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { saveAs } from 'file-saver';
 ///Exemplo de gerador de CPF/CNPJ 
 ///Testando compenetização e árvore de modificação no DOM com Angular
 ///https://codepen.io/WalterNascimento/pen/xxVRKgm
@@ -31,11 +32,13 @@ export class CpfComponent implements OnInit {
   }
 
   public clear() {
-    this.items = [];
+    ///pra notificar a mudança
+    this.items.length = 0
+    ///infelizmente o observer não enxerga essa alteração.
+    // this.items = [];
   }
 
   public handleClick() {
-    console.log("Chamado")
     const documento: IPessoa = {
       creatAt: new Date,
       document: this.gerarDocumento(),
@@ -48,13 +51,6 @@ export class CpfComponent implements OnInit {
     this.items.push(cpfModel);
   }
 
-  public setUsed(cpf: string) {
-    var cpfModel = this.items.findIndex(x => x.document == cpf);
-    if (cpfModel != -1) {
-      this.items[cpfModel].used = true;
-    }
-  }
-  
   public number_random = (number: number) => (Math.round(Math.random() * number));
   public create_array = (total: number, numero: number) => Array.from(Array(total), () => this.number_random(numero));
   public mod = (dividendo: number, divisor: number) => Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
@@ -115,10 +111,50 @@ export class CpfComponent implements OnInit {
   ngOnInit(): void { }
 
   public gerarDocumento(): string {
-    console.log(this.tipo.value)
-    console.log(this.documento.value)
-    console.log(this.mascara.value)
     return this.tipo.value == "cnpj" ? this.cnpj() : this.cpf();
   }
 
+  private obterPessoa(index: number): IPessoa {
+    return this.items[index]
+  }
+
+  public copiarDocumento(index: number) {
+    var documento = this.obterPessoa(index).document;
+    navigator.clipboard.writeText(documento).then(function () {
+      console.log("Copiada para a área de transferência", documento);
+    }, function (err) {
+      console.log("Ocorreu um erro ao copiar", documento);
+    });
+  }
+
+  public marcarUsado(index: number) {
+    var obterUsedPessoa = this.obterPessoa(index).used;
+    this.items[index].used = !obterUsedPessoa;
+  }
+  public carregarArquivoDocumentos(event: any) {
+    const reader = new FileReader();
+    try {
+      reader.onload = (e: any) => {
+        let conteudoArquivoJson = JSON.parse(reader.result!.toString());
+        let pessoas = Array.from<IPessoa>(conteudoArquivoJson)
+        this.clear();
+        pessoas.map(item => {
+          this.add(item)
+        })
+      };
+      reader.readAsText(event.target.files[0], 'utf-8');
+    }
+    catch (exception) {
+      console.log("Ocorreu um erro ao ler o arquivo")
+    }
+  }
+
+
+  public baixarArquivoDocumento() {
+    let data = JSON.stringify(this.items);
+    const blob = new Blob([data], { type: 'text/plain;charset=utf-8' });
+    saveAs(blob, "lista_documentos.json");
+  }
+
 }
+

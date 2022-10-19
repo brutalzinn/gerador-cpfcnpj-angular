@@ -1,6 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { timer } from 'rxjs/internal/observable/timer';
 import { CpfComponent, IPessoa } from './documento/documento.component';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -12,35 +13,33 @@ export class AppComponent implements AfterViewInit {
 
   title = 'Gerador CPFCNPJ';
 
-  constructor() { }
-  public pessoas: any;
+  constructor() {
+
+  }
+  public pessoas: Array<IPessoa> = [];
 
 
   ngAfterViewInit() {
-    timer(1000).subscribe(() => {
+    timer(1500).subscribe(() => {
       this.pessoas = this.child.items
     })
   }
 
-  ///MOVER PARA OUTRO COMPONENTE DEPOIS. O PAI NEM DEVERIA TER OPÇÕES DE AÇÕES AQUI
-  ///estou modificando uma pseudo list que pode ter sido modificado antes :V
-
-  public obterPessoa(index: number): IPessoa {
-    return this.pessoas[index]
-  }
-
   public copiarDocumento(index: number) {
-    var documento = this.obterPessoa(index).document;
-    navigator.clipboard.writeText(documento).then(function () {
-      console.log("Copiada para a área de transferência", documento);
-    }, function (err) {
-      console.log("Ocorreu um erro ao copiar", documento);
-    });
+    this.child.copiarDocumento(index);
+    this.marcarUsado(index);
+    this.avisarAreaTransferencia(index);
+  }
+  //usando jquery pra me readaptar
+  public avisarAreaTransferencia(index: number) {
+    let classeAlerta: string = '#alert-' + index
+    $(classeAlerta).fadeIn();
+    setTimeout(function () {
+      $(classeAlerta).fadeOut(1000);
+    }, 1300);
   }
 
   public marcarUsado(index: number) {
-    var obterUsedPessoa = this.obterPessoa(index).used;
-    this.pessoas[index].used = !obterUsedPessoa
+    this.child.marcarUsado(index);
   }
-
 }

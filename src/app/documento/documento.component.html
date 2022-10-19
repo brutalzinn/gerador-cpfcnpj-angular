@@ -13,5 +13,7 @@
     <label for="mascara">Máscara</label><br /><br />
 
     <button type="button" (click)="handleClick()">Criar CPFCNPJ</button>
+    <button type="button" (click)="baixarArquivoDocumento()">Baixar lista</button>
+    <input id="preview" type="file" (change)="carregarArquivoDocumentos($event)" />
 
 </form>
