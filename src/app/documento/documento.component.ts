@@ -54,6 +54,7 @@ export class CpfComponent implements OnInit {
       this.items[cpfModel].used = true;
     }
   }
+  
   public number_random = (number: number) => (Math.round(Math.random() * number));
   public create_array = (total: number, numero: number) => Array.from(Array(total), () => this.number_random(numero));
   public mod = (dividendo: number, divisor: number) => Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));

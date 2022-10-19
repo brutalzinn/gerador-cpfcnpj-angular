@@ -1,7 +1,6 @@
 <h1>Gerador de CPF CNPJ</h1>
 <app-header></app-header>
 <module-documento></module-documento>
-
 <table class="table">
     <thead>
         <tr>
@@ -13,21 +12,22 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pessoa of pessoas">
-            <th scope="row">1</th>
+        <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
+            <th scope="row">{{i}}</th>
             <td> {{ pessoa.document }}</td>
             <td>{{ pessoa.creatAt.toLocaleString("pt-BR") }}</td>
             <td>{{ pessoa.used ? "usado" : "não usado" }}</td>
+            <td>
+                <button type="button" (click)="marcarUsado(i)" class="btn btn-light">{{ pessoa.used ? "Desmarcar
+                    uso" : "Marcar usado"
+                    }}</button>
+
+                <button type="button" (click)="copiarDocumento(i)" class="btn btn-light">Copiar
+                    documento</button>
+
+            </td>
+
         </tr>
-        <!-- <li *ngFor="let pessoa of pessoas" class="list-group-item">
-            {{ pessoa.document }}
-            {{ pessoa.creatAt.toLocaleString("pt-BR") }}
-            <button type="button" class="btn btn-light">Marcar usado</button>
-            <button type="button" class="btn btn-light">Copiar Documento</button>
-        </li> -->
     </tbody>
 </table>
-
-<!-- <button type="submit" (click)="gerarDocumento()">Criar CPFCNPJ</button> -->
-
 <app-footer></app-footer>
