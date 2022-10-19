@@ -1,8 +1,10 @@
 <h1>Gerador de CPF CNPJ - Reatividade Angular</h1>
 
-
-<button (click)="handleClick()">Teste</button>
-
-
-
 <module-documento></module-documento>
+
+<!-- <button type="submit" (click)="gerarDocumento()">Criar CPFCNPJ</button> -->
+
+<li *ngFor="let pessoa of pessoas">
+    {{ pessoa.document }}
+    {{ pessoa.creatAt.toLocaleString("pt-BR") }}
+</li>

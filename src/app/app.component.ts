@@ -1,4 +1,5 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { timer } from 'rxjs/internal/observable/timer';
 import { CpfComponent } from './documento/documento.component';
 
 @Component({
@@ -9,14 +10,16 @@ export class AppComponent implements AfterViewInit {
 
   @ViewChild(CpfComponent) child: any;
 
+  title = 'Gerador CPFCNPJ';
+
   constructor() { }
+  public pessoas: any;
 
-  public handleClick: any;
 
-  ngAfterViewInit(): void {
-    this.handleClick = this.child.handleClick
+  ngAfterViewInit() {
+    timer(1000).subscribe(() => {
+      this.pessoas = this.child.items
+    })
   }
 
-
-  title = 'Gerador CPFCNPJ';
 }

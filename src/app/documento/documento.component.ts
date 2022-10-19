@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 ///Exemplo de gerador de CPF/CNPJ 
 ///Testando compenetização e árvore de modificação no DOM com Angular
 ///https://codepen.io/WalterNascimento/pen/xxVRKgm
+///https://medium.com/walternascimentobarroso-pt/gerador-de-cpf-e-cnpj-com-javascript-408b751f3afc
 
-
-export interface IDocumento {
+export interface IPessoa {
   document: string;
   creatAt: Date;
   used: boolean;
@@ -18,35 +18,33 @@ export interface IDocumento {
 
 export class CpfComponent implements OnInit {
 
-  numero = new FormControl('');
-  tipo = new FormControl('');
-  mascara = new FormControl('');
+  public items: Array<IPessoa> = [];
 
-
-  public items: Array<IDocumento> = [];
+  public mainForm: FormGroup;
 
   constructor() {
-    this.items = []
+    this.mainForm = new FormGroup({
+      documento: new FormControl(''),
+      tipo: new FormControl(''),
+      mascara: new FormControl('')
+    })
   }
 
   public clear() {
     this.items = [];
   }
 
-  public handleClick(event: Event) {
+  public handleClick() {
     console.log("Chamado")
-
-    const documento: IDocumento = {
+    const documento: IPessoa = {
       creatAt: new Date,
-      document: "00000000",
-      used: true,
+      document: this.gerarDocumento(),
+      used: false,
     }
-
-    console.log(JSON.stringify(this.items))
-    this.items.push(documento);
+    this.add(documento);
   }
 
-  public add(cpfModel: IDocumento) {
+  public add(cpfModel: IPessoa) {
     this.items.push(cpfModel);
   }
 
@@ -59,11 +57,6 @@ export class CpfComponent implements OnInit {
   public number_random = (number: number) => (Math.round(Math.random() * number));
   public create_array = (total: number, numero: number) => Array.from(Array(total), () => this.number_random(numero));
   public mod = (dividendo: number, divisor: number) => Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
-
-
-  public gera() {
-    this.numero.setValue(this.tipo.value == "cpf" ? this.cnpj() : this.cpf());
-  }
 
   public cnpj() {
     let total_array = 8;
@@ -108,8 +101,23 @@ export class CpfComponent implements OnInit {
     return `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${d1}${d2}`;
   }
 
-  ngOnInit(): void {
-    this.items = []
+  get mascara() {
+    return this.mainForm.get('mascara')!;
+  }
+  get tipo() {
+    return this.mainForm.get('tipo')!;
+  }
+  get documento() {
+    return this.mainForm.get('documento')!;
+  }
+
+  ngOnInit(): void { }
+
+  public gerarDocumento(): string {
+    console.log(this.tipo.value)
+    console.log(this.documento.value)
+    console.log(this.mascara.value)
+    return this.tipo.value == "cnpj" ? this.cnpj() : this.cpf();
   }
 
 }
