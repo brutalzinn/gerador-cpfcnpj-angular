@@ -1,0 +1,13 @@
+<h1>Gerador de CPF E CNPJ válidos</h1>
+<form name="form_main">
+    <label for="numero">Documento:</label>
+    <input id="numero" size="20" type="text" [formControl]="numero" /><br />
+    Tipo:
+    <input name="tipo" value="cpf" id="cpf" checked="checked" type="radio" [formControl]="tipo">
+    <label for="cpf">CPF</label>
+    <input name="tipo" value="cnpj" id="cnpj" type="radio" [formControl]="tipo" />
+    <label for="cnpj">CNPJ</label>
+    <input name="mascara" value="mascara" id="mascara" type="checkbox" [formControl]="mascara">
+    <label for="mascara">Máscara</label><br /><br />
+    <input name="button" value="Gerar" onclick="gera()" type="button">
+</form>
