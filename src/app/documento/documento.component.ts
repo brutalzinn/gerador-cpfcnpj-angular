@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+///Exemplo de gerador de CPF/CNPJ 
+///Testando compenetização e árvore de modificação no DOM com Angular
+///https://codepen.io/WalterNascimento/pen/xxVRKgm
 
 
 export interface IDocumento {
