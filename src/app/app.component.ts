@@ -43,6 +43,11 @@ export class AppComponent implements AfterViewInit {
     this.child.alternarUsado(index, true);
   }
 
+  public excluirDocumentos() {
+    this.child.clear();
+  }
+
+
   public excluirDocumento(index: number) {
     this.child.deletar(index);
   }

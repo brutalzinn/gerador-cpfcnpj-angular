@@ -28,7 +28,7 @@ export class CpfComponent implements OnInit {
 
   constructor(private service: GeradorCpfCnpjService) {
     this.mainForm = new FormGroup({
-      documento: new FormControl(''),
+      quantidade: new FormControl(1),
       tipo: new FormControl('cpf'),
       mascara: new FormControl(false)
     })
@@ -42,14 +42,18 @@ export class CpfComponent implements OnInit {
   }
 
   public handleClick() {
-    const documento: IPessoa = {
-      creatAt: new Date(),
-      updatedAt: new Date(),
-      type: this.tipo.value.toUpperCase(),
-      document: this.gerarDocumento(),
-      used: false,
+    if (this.quantidade.value > 1) {
+      for (var i = 0; i < this.quantidade.value; i++) {
+        const documento: IPessoa = {
+          creatAt: new Date(),
+          updatedAt: new Date(),
+          type: this.tipo.value.toUpperCase(),
+          document: this.gerarDocumento(),
+          used: false,
+        }
+        this.add(documento);
+      }
     }
-    this.add(documento);
   }
 
   public add(cpfModel: IPessoa) {
@@ -66,8 +70,8 @@ export class CpfComponent implements OnInit {
   get tipo() {
     return this.mainForm.get('tipo')!;
   }
-  get documento() {
-    return this.mainForm.get('documento')!;
+  get quantidade() {
+    return this.mainForm.get('quantidade')!;
   }
 
   ngOnInit(): void { }
