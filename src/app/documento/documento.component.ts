@@ -42,18 +42,18 @@ export class CpfComponent implements OnInit {
   }
 
   public handleClick() {
-    if (this.quantidade.value > 1) {
-      for (var i = 0; i < this.quantidade.value; i++) {
-        const documento: IPessoa = {
-          creatAt: new Date(),
-          updatedAt: new Date(),
-          type: this.tipo.value.toUpperCase(),
-          document: this.gerarDocumento(),
-          used: false,
-        }
-        this.add(documento);
+
+    for (var i = 0; i < this.quantidade.value; i++) {
+      const documento: IPessoa = {
+        creatAt: new Date(),
+        updatedAt: new Date(),
+        type: this.tipo.value.toUpperCase(),
+        document: this.gerarDocumento(),
+        used: false,
       }
+      this.add(documento);
     }
+
   }
 
   public add(cpfModel: IPessoa) {
