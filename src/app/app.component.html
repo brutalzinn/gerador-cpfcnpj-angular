@@ -5,6 +5,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Tipo</th>
             <th scope="col">Documento</th>
             <th scope="col">Criado em</th>
             <th scope="col">Usado</th>
@@ -14,6 +15,7 @@
     <tbody>
         <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
             <th scope="row">{{i}}</th>
+            <th>{{ pessoa.type }} </th>
             <td (click)="copiarDocumento(i)"> {{ pessoa.document }}
                 <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">
                     {{ pessoa.document }} copiado para transferência
@@ -23,12 +25,15 @@
             <td> {{ pessoa.creatAt.toLocaleString("pt-BR") }}</td>
             <td> {{ pessoa.used ? "usado" : "não usado" }}</td>
             <td>
-                <button type="button" (click)="marcarUsado(i)" class="btn btn-light">{{ pessoa.used ? "Desmarcar
+                <button type="button" (click)="alternarUsado(i)" class="btn btn-light">{{ pessoa.used ? "Desmarcar
                     uso" : "Marcar usado"
                     }}</button>
 
                 <button type="button" (click)="copiarDocumento(i)" class="btn btn-light">Copiar
                     documento</button>
+
+                <button type="button" (click)="excluirDocumento(i)" class="btn btn-danger">
+                    Excluir</button>
 
             </td>
         </tr>

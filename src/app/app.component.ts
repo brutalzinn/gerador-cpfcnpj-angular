@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit {
 
   public copiarDocumento(index: number) {
     this.child.copiarDocumento(index);
-    this.marcarUsado(index);
+    this.child.marcarUsado(index, true);
     this.avisarAreaTransferencia(index);
   }
   //usando jquery pra me readaptar
@@ -39,7 +39,11 @@ export class AppComponent implements AfterViewInit {
     }, 1300);
   }
 
-  public marcarUsado(index: number) {
-    this.child.marcarUsado(index);
+  public alternarUsado(index: number) {
+    this.child.alternarUsado(index, true);
+  }
+
+  public excluirDocumento(index: number) {
+    this.child.deletar(index);
   }
 }
