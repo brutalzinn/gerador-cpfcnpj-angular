@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { saveAs } from 'file-saver';
 import { GeradorCpfCnpjService } from '../gerador-cpf-cnpj.service';
 ///Exemplo de gerador de CPF/CNPJ 
@@ -28,7 +28,7 @@ export class CpfComponent implements OnInit {
 
   constructor(private service: GeradorCpfCnpjService) {
     this.mainForm = new FormGroup({
-      quantidade: new FormControl(1),
+      quantidade: new FormControl(1, [Validators.required, Validators.min(1), Validators.pattern("^[0-9]*$")]),
       tipo: new FormControl('cpf'),
       mascara: new FormControl(false)
     })
@@ -42,7 +42,6 @@ export class CpfComponent implements OnInit {
   }
 
   public handleClick() {
-
     for (var i = 0; i < this.quantidade.value; i++) {
       const documento: IPessoa = {
         creatAt: new Date(),
@@ -53,7 +52,6 @@ export class CpfComponent implements OnInit {
       }
       this.add(documento);
     }
-
   }
 
   public add(cpfModel: IPessoa) {
@@ -72,6 +70,10 @@ export class CpfComponent implements OnInit {
   }
   get quantidade() {
     return this.mainForm.get('quantidade')!;
+  }
+
+  get controls() {
+    return this.mainForm.controls;
   }
 
   ngOnInit(): void { }

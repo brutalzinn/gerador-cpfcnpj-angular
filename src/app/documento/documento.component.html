@@ -1,19 +1,52 @@
 <form [formGroup]="mainForm">
-    <label for="quantidade">Quantidade:</label>
-    <input name="quantidade" id="quantidade" size="20" type="text" formControlName="quantidade" /><br />
+    <div class="input-group mb-3">
+        <input class="form-control" placeholder="Número de CPF/CNPJ para gerar" name="quantidade" id="quantidade"
+            type="text" formControlName="quantidade">
+        <button type="button" (click)="handleClick()" class="btn btn-primary">Criar CPFCNPJ</button>
+    </div>
 
-    Tipo:
-    <input name="tipo" value="cpf" id="cpf" type="radio" formControlName="tipo" />
-    <label for="cpf">CPF</label>
 
-    <input name="tipo" value="cnpj" id="cnpj" type="radio" formControlName="tipo" />
-    <label for="cnpj">CNPJ</label>
+    <div *ngIf="controls['quantidade'].touched && controls['quantidade'].invalid" class="alert alert-danger">
+        <div *ngIf="controls['quantidade'].errors && controls['quantidade'].errors['required']">Quantidade deve ser
+            informada
+        </div>
+        <div *ngIf="controls['quantidade'].errors && controls['quantidade'].errors['min']">Quantidade deve ser
+            maior que 0</div>
+        <div *ngIf="controls['quantidade'].errors && controls['quantidade'].errors['pattern']">Quantidade deve ser
+            um número</div>
+    </div>
 
-    <input name="mascara" value="mascara" id="mascara" type="checkbox" formControlName="mascara">
-    <label for="mascara">Máscara</label><br /><br />
+    <div class="input-group mb-3">
+        <div class="form-check form-check-inline">
+            <input name="tipo" class="form-check-input" type="radio" value="cpf" id="cpf" formControlName="tipo">
+            <label class="form-check-label" for="cpf">
+                CPF
+            </label>
 
-    <button type="button" (click)="handleClick()">Criar CPFCNPJ</button>
-    <button type="button" (click)="baixarArquivoDocumento()">Baixar lista</button>
-    <input id="preview" type="file" (change)="carregarArquivoDocumentos($event)" />
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" value="cnpj" name="tipo" id="cnpj" formControlName="tipo">
+            <label class="form-check-label" for="cnpj">
+                CNPJ
+            </label>
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" value="mascara" id="mascara" formControlName="mascara">
+            <label class="form-check-label" for="mascara">Máscara</label>
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <button type="button" (click)="baixarArquivoDocumento()" class="btn btn-primary me-1">Baixar lista</button>
+        <input type="file" (change)="carregarArquivoDocumentos($event)" class="form-control form-control-sm"
+            class="btn btn-primary me-1" />
+
+
+    </div>
+    <button type="button" (click)="clear()" class="btn btn-danger me-1">Limpar lista</button>
 
 </form>

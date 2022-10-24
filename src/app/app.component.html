@@ -1,46 +1,47 @@
 <h1>Gerador de CPF CNPJ</h1>
 <app-header></app-header>
-<module-documento></module-documento>
-<button type="button" (click)="excluirDocumentos()" class="btn btn-light">Limpar</button>
+<div id="menu">
+    <module-documento></module-documento>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Documento</th>
-            <th scope="col">Criado em</th>
-            <th scope="col">Usado</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
-            <th scope="row">{{i + 1}}</th>
-            <th>{{ pessoa.type }} </th>
-            <td (click)="copiarDocumento(i)"> {{ pessoa.document }}
-                <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">
-                    {{ pessoa.document }} copiado para transferência
-                </div>
-            </td>
-            <td> {{ pessoa.creatAt.toLocaleString("pt-BR") }}</td>
-            <td> {{ pessoa.used ? "usado" : "não usado" }}</td>
-            <td>
-                <button type="button" (click)="alternarUsado(i)" class="btn btn-light">{{ pessoa.used ? "Desmarcar
-                    uso" : "Marcar usado"
-                    }}</button>
-            </td>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Documento</th>
+                <th scope="col">Criado em</th>
+                <th scope="col">Usado</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
+                <th scope="row">{{i + 1}}</th>
+                <th>{{ pessoa.type }} </th>
+                <td (click)="copiarDocumento(i)"> {{ pessoa.document }}
+                    <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">
+                        {{ pessoa.document }} copiado para transferência
+                    </div>
+                </td>
+                <td> {{ pessoa.creatAt.toLocaleString("pt-BR") }}</td>
+                <td> {{ pessoa.used ? "usado" : "não usado" }}</td>
+                <td>
+                    <button type="button" (click)="alternarUsado(i)" class="btn btn-light">{{ pessoa.used ? "Desmarcar
+                        uso" : "Marcar usado"
+                        }}</button>
+                </td>
 
-            <td>
-                <button type="button" (click)="copiarDocumento(i)" class="btn btn-light">Copiar documento</button>
-            </td>
-            <td>
+                <td>
+                    <button type="button" (click)="copiarDocumento(i)" class="btn btn-light">Copiar documento</button>
+                </td>
+                <td>
 
-                <button type="button" (click)="excluirDocumento(i)" class="btn btn-danger">Excluir</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                    <button type="button" (click)="excluirDocumento(i)" class="btn btn-danger">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <app-footer></app-footer>
