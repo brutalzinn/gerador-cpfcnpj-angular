@@ -1,6 +1,9 @@
 <form [formGroup]="mainForm">
     <div class="input-group mb-3">
-        <input class="form-control" placeholder="Número de CPF/CNPJ para gerar" name="quantidade" id="quantidade"
+        <label class="form-label" for="cpf">
+            Quantidade:
+        </label>
+        <input class="form-control" placeholder="Quantidade de CPF/CNPJ para gerar" name="quantidade" id="quantidade"
             type="text" formControlName="quantidade">
         <button type="button" (click)="handleClick()" class="btn btn-primary">Criar CPFCNPJ</button>
     </div>
