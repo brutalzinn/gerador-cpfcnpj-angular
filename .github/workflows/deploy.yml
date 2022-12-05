@@ -18,5 +18,5 @@ jobs:
       - name: Push to dokku
         uses: dokku/github-action@master
         with:
-          git_remote_url: "ssh://dokku@167.114.196.39:22/gerador-cpfcnpj-angular"
+          git_remote_url: ${{ format('{0}/{1}', secrets.SSH_REMOTE_URL, 'gerador') }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
