@@ -10,38 +10,53 @@
                 <th scope="col">Tipo</th>
                 <th scope="col">Documento</th>
                 <th scope="col">Criado em</th>
-                <th scope="col">Usado</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
                 <th scope="row">{{i + 1}}</th>
-                <th>{{ pessoa.type }} </th>
-                <td (click)="copiarDocumento(i)"> {{ pessoa.document }}
+                <td>
+              <div *ngIf="pessoa.tipoPF; else cnpjSHOW">
+                CPF
+                </div>
+              <ng-template #cnpjSHOW>
+                CNPJ
+              </ng-template>
+
+                </td>
+                <td (click)="copiarDocumento(i)"> {{ pessoa.documento }}
                     <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">
-                        {{ pessoa.document }} copiado para transferência
+                        {{ pessoa.documento }} copiado para transferência
                     </div>
                 </td>
-                <td> {{ pessoa.creatAt.toLocaleString("pt-BR") }}</td>
-                <td> {{ pessoa.used ? "usado" : "não usado" }}</td>
+                <td> {{ pessoa.criadoEm.toLocaleString("pt-BR") }}</td>
                 <td>
-                    <button type="button" (click)="alternarUsado(i)" class="btn btn-light">{{ pessoa.used ? "Desmarcar
+                <div *ngIf="pessoa.usado; else elseBlockShow">
+                <span class="text-danger">Em uso</span>
+                </div>
+              <ng-template #elseBlockShow>
+                <span class="text-success">Disponível</span>
+              </ng-template>
+                 </td>
+                <td>
+                    <button type="button" (click)="alternarUsado(i)" class="btn btn-light">{{ pessoa.usado ? "Desmarcar
                         uso" : "Marcar usado"
-                        }}</button>
+                        }}
+                      </button>
+                </td>
+                <td>
+                <app-detalhes [metadata]="pessoa.metadata"></app-detalhes>
                 </td>
 
                 <td>
                     <button type="button" (click)="copiarDocumento(i)" class="btn btn-light">Copiar documento</button>
                 </td>
                 <td>
-
                     <button type="button" (click)="excluirDocumento(i)" class="btn btn-danger">Excluir</button>
                 </td>
             </tr>
         </tbody>
     </table>
+
 </div>
 <app-footer></app-footer>

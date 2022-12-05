@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { CpfComponent } from './documento/documento.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { GeradorCpfCnpjService } from './gerador-cpf-cnpj.service';
+import { GeradorDeDadosService } from './gerador-cpf-cnpj.service';
+import { DetalhesComponent } from './detalhes/detalhes.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,14 @@ import { GeradorCpfCnpjService } from './gerador-cpf-cnpj.service';
     CpfComponent,
     HeaderComponent,
     FooterComponent,
+    DetalhesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [GeradorCpfCnpjService],
+  providers: [GeradorDeDadosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

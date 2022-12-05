@@ -1,19 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IPessoa } from './../interfaces';
 import { saveAs } from 'file-saver';
-import { GeradorCpfCnpjService } from '../gerador-cpf-cnpj.service';
-///Exemplo de gerador de CPF/CNPJ 
+import { GeradorDeDadosService } from '../gerador-cpf-cnpj.service';
+///Exemplo de gerador de CPF/CNPJ
 ///Testando compenetização e árvore de modificação no DOM com Angular
 ///https://codepen.io/WalterNascimento/pen/xxVRKgm
 ///https://medium.com/walternascimentobarroso-pt/gerador-de-cpf-e-cnpj-com-javascript-408b751f3afc
 
-export interface IPessoa {
-  document: string;
-  type: string;
-  creatAt: Date;
-  updatedAt: Date;
-  used: boolean;
-}
+
 
 @Component({
   selector: 'module-documento',
@@ -23,10 +18,10 @@ export interface IPessoa {
 export class CpfComponent implements OnInit {
 
   public items: Array<IPessoa> = [];
-  public geradorCpfCnpjService: GeradorCpfCnpjService;
+  public geradorCpfCnpjService: GeradorDeDadosService;
   public mainForm: FormGroup;
 
-  constructor(private service: GeradorCpfCnpjService) {
+  constructor(private service: GeradorDeDadosService) {
     this.mainForm = new FormGroup({
       quantidade: new FormControl(1, [Validators.required, Validators.min(1), Validators.pattern("^[0-9]*$")]),
       tipo: new FormControl('cpf'),
@@ -41,15 +36,30 @@ export class CpfComponent implements OnInit {
     // this.items = [];
   }
 
-  public handleClick() {
+  private criarMetadata(pessoa : IPessoa) : object{
+      let documento = pessoa.documento.replace(/[^\w\s]/gi, '')
+      if(pessoa.tipoPF){
+        return {
+        documento: documento,
+        rg: this.geradorCpfCnpjService.rg(false),
+        DataNascimento: this.geradorCpfCnpjService.DataNascimento().toLocaleDateString(),
+      }
+      }
+      return {
+        documento: documento
+      }
+  }
+
+  public criarPessoas() {
     for (var i = 0; i < this.quantidade.value; i++) {
       const documento: IPessoa = {
-        creatAt: new Date(),
-        updatedAt: new Date(),
-        type: this.tipo.value.toUpperCase(),
-        document: this.gerarDocumento(),
-        used: false,
+        criadoEm: new Date(),
+        atualizadoEm: new Date(),
+        tipoPF: this.tipo.value === "cpf",
+        documento: this.gerarDocumento(),
+        usado: false,
       }
+      documento.metadata = this.criarMetadata(documento);
       this.add(documento);
     }
   }
@@ -79,8 +89,12 @@ export class CpfComponent implements OnInit {
   ngOnInit(): void { }
 
   public gerarDocumento(): string {
-    let tipoDocumento: boolean = this.mascara.value;
-    return this.tipo.value == "cnpj" ? this.geradorCpfCnpjService.cnpj(tipoDocumento) : this.geradorCpfCnpjService.cpf(tipoDocumento);
+    let mascara: boolean = this.mascara.value;
+    return this.tipoPessoaFisica() ? this.geradorCpfCnpjService.cpf(mascara) : this.geradorCpfCnpjService.cnpj(mascara);
+  }
+
+  private tipoPessoaFisica() : boolean {
+  return this.tipo.value == "cpf"
   }
 
   private obterPessoa(index: number): IPessoa {
@@ -88,7 +102,7 @@ export class CpfComponent implements OnInit {
   }
 
   public copiarDocumento(index: number) {
-    var documento = this.obterPessoa(index).document;
+    var documento = this.obterPessoa(index).documento;
     navigator.clipboard.writeText(documento).then(function () {
       console.log("Copiada para a área de transferência", documento);
     }, function (err) {
@@ -97,12 +111,12 @@ export class CpfComponent implements OnInit {
   }
 
   public marcarUsado(index: number, used: boolean) {
-    this.items[index].used = used;
+    this.items[index].usado = used;
   }
 
   public alternarUsado(index: number) {
-    var obterUsedPessoa = this.obterPessoa(index).used;
-    this.items[index].used = !obterUsedPessoa;
+    var obterUsedPessoa = this.obterPessoa(index).usado;
+    this.items[index].usado = !obterUsedPessoa;
   }
 
   public carregarArquivoDocumentos(event: any) {

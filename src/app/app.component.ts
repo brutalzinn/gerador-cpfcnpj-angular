@@ -1,7 +1,8 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { timer } from 'rxjs/internal/observable/timer';
-import { CpfComponent, IPessoa } from './documento/documento.component';
+import { CpfComponent } from './documento/documento.component';
 import * as $ from 'jquery';
+import { IPessoa } from './interfaces';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +43,9 @@ export class AppComponent implements AfterViewInit {
   public alternarUsado(index: number) {
     this.child.alternarUsado(index, true);
   }
-
+  public exibirDetalhes(index: number) {
+    this.child.exibirDetalhes(index);
+  }
 
   public excluirDocumento(index: number) {
     this.child.deletar(index);
