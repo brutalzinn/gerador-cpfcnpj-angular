@@ -10,18 +10,17 @@ import { GeradorDeDadosService } from '../gerador-cpf-cnpj.service';
   styleUrls: ['./detalhes.component.css']
 })
 export class DetalhesComponent implements OnInit {
-  public mainForm: FormGroup;
   @Input('metadata') metadata: any;
-  @Input('mascaraAtiva') mascaraAtiva: any;
+  public documento: any;
 
   constructor(private service: GeradorDeDadosService) {
-  this.mainForm = new FormGroup({
-      mascara: new FormControl(false)
-  })
 
   }
+
   ngOnInit(): void {
+    this.documento = this.metadata.documento.replace(/[^\w\s]/gi, '')
   }
+
   displayStyle = "none";
 
   openPopup() {
@@ -44,8 +43,9 @@ export class DetalhesComponent implements OnInit {
   }
 
   notificarDado(chave: string){
-  let documento = this.metadata.documento;
+  let documento = this.documento
   let classeAlerta: string = `#alert-${documento}-${chave}`
+  console.log(classeAlerta)
     $(classeAlerta).fadeIn();
     setTimeout(function () {
       $(classeAlerta).fadeOut(1000);
@@ -68,13 +68,5 @@ export class DetalhesComponent implements OnInit {
 
   }
 
-  ngAfterViewInit() {
-    timer(1500).subscribe(() => {
-     // this.pessoas = this.child.items
-    })
-  }
 
-    get mascara() {
-    return this.mainForm.get('mascara')!;
-  }
 }
