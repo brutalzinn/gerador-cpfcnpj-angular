@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import cnaeMock from "./mocks/cnae.json";
 import naturezaMock from "./mocks/natureza.json";
+import razaoSocialMock from "./mocks/razao_social.json";
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,12 @@ export class GeradorDeDadosService {
   let ehNaturezaJuridica = text.length == 4
 
   if(ehCpf){
-        let [n1, n2, n3, n4, n5, n6, n7, n8,n9,d1,d2] = this.text_to_array(text);
-        return `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`;
+      let [n1, n2, n3, n4, n5, n6, n7, n8,n9,d1,d2] = this.text_to_array(text);
+      return `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`;
   }
-   if(ehCNPJ){
-        let [n1, n2, n3, n4, n5, n6, n7, n8,n9,n10,n11,n12, d1,d2] = this.text_to_array(text);
-        return `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}/${n9}${n10}${n11}${n12}-${d1}${d2}`;
+  if(ehCNPJ){
+      let [n1, n2, n3, n4, n5, n6, n7, n8,n9,n10,n11,n12, d1,d2] = this.text_to_array(text);
+      return `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}/${n9}${n10}${n11}${n12}-${d1}${d2}`;
   }
   if(ehRG){
     let [n1, n2, n3, n4, n5, n6, n7, n8,d1] = this.text_to_array(text);
@@ -49,6 +50,12 @@ export class GeradorDeDadosService {
   }
 
   return text;
+}
+
+public razaoSocial(){
+    let randomIndex =  this.number_random(razaoSocialMock.length);
+    let razaoSocial = razaoSocialMock[randomIndex];
+    return razaoSocial;    
 }
 
 public cnae(mascara: boolean){

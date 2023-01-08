@@ -1,85 +1,334 @@
 [
-	{"cod": "101-5", "desc": "Órgão Público do Poder Executivo Federal"},
-	{"cod": "102-3", "desc": "Órgão Público do Poder Executivo Estadual ou do Distrito Federal"},
-	{"cod": "103-1", "desc": "Órgão Público do Poder Executivo Municipal"},
-	{"cod": "104-0", "desc": "Órgão Público do Poder Legislativo Federal"},
-	{"cod": "105-8", "desc": "Órgão Público do Poder Legislativo Estadual ou do Distrito Federal"},
-	{"cod": "106-6", "desc": "Órgão Público do Poder Legislativo Municipal"},
-	{"cod": "107-4", "desc": "Órgão Público do Poder Judiciário Federal"},
-	{"cod": "108-2", "desc": "Órgão Público do Poder Judiciário Estadual"},
-	{"cod": "110-4", "desc": "Autarquia Federal"},
-	{"cod": "111-2", "desc": "Autarquia Estadual ou do Distrito Federal"},
-	{"cod": "112-0", "desc": "Autarquia Municipal"},
-	{"cod": "113-9", "desc": "Fundação Pública de Direito Público Federal"},
-	{"cod": "114-7", "desc": "Fundação Pública de Direito Público Estadual ou do Distrito Federal"},
-	{"cod": "115-5", "desc": "Fundação Pública de Direito Público Municipal"},
-	{"cod": "116-3", "desc": "Órgão Público Autônomo Federal"},
-	{"cod": "117-1", "desc": "Órgão Público Autônomo Estadual ou do Distrito Federal"},
-	{"cod": "118-0", "desc": "Órgão Público Autônomo Municipal"},
-	{"cod": "119-8", "desc": "Comissão Polinacional"},
-	{"cod": "120-1", "desc": "Fundo Público"},
-	{"cod": "121-0", "desc": "Consórcio Público de Direito Público (Associação Pública)"},
-	{"cod": "122-8", "desc": "Consórcio Público de Direito Privado"},
-	{"cod": "123-6", "desc": "Estado ou Distrito Federal"},
-	{"cod": "124-4", "desc": "Município"},
-	{"cod": "125-2", "desc": "Fundação Pública de Direito Privado Federal"},
-	{"cod": "126-0", "desc": "Fundação Pública de Direito Privado Estadual ou do Distrito Federal"},
-	{"cod": "127-9", "desc": "Fundação Pública de Direito Privado Municipal"},
-	{"cod": "201-1", "desc": "Empresa Pública"},
-	{"cod": "203-8", "desc": "Sociedade de Economia Mista"},
-	{"cod": "204-6", "desc": "Sociedade Anônima Aberta"},
-	{"cod": "205-4", "desc": "Sociedade Anônima Fechada"},
-	{"cod": "206-2", "desc": "Sociedade Empresária Limitada"},
-	{"cod": "207-0", "desc": "Sociedade Empresária em Nome Coletivo"},
-	{"cod": "208-9", "desc": "Sociedade Empresária em Comandita Simples"},
-	{"cod": "209-7", "desc": "Sociedade Empresária em Comandita por Ações"},
-	{"cod": "212-7", "desc": "Sociedade em Conta de Participação"},
-	{"cod": "213-5", "desc": "Empresário (Individual)"},
-	{"cod": "214-3", "desc": "Cooperativa"},
-	{"cod": "215-1", "desc": "Consórcio de Sociedades"},
-	{"cod": "216-0", "desc": "Grupo de Sociedades"},
-	{"cod": "217-8", "desc": "Estabelecimento, no Brasil, de Sociedade Estrangeira"},
-	{"cod": "219-4", "desc": "Estabelecimento, no Brasil, de Empresa Binacional Argentino-Brasileira"},
-	{"cod": "221-6", "desc": "Empresa Domiciliada no Exterior"},
-	{"cod": "222-4", "desc": "Clube/Fundo de Investimento"},
-	{"cod": "223-2", "desc": "Sociedade Simples Pura"},
-	{"cod": "224-0", "desc": "Sociedade Simples Limitada"},
-	{"cod": "225-9", "desc": "Sociedade Simples em Nome Coletivo"},
-	{"cod": "226-7", "desc": "Sociedade Simples em Comandita Simples "},
-	{"cod": "227-5", "desc": "Empresa Binacional"},
-	{"cod": "228-3", "desc": "Consórcio de Empregadores"},
-	{"cod": "229-1", "desc": "Consórcio Simples"},
-	{"cod": "230-5", "desc": "Empresa Individual de Responsabilidade Limitada (de Natureza Empresária)"},
-	{"cod": "231-3", "desc": "Empresa Individual de Responsabilidade Limitada (de Natureza Simples)"},
-	{"cod": "232-1", "desc": "Sociedade Unipessoal de Advogados"},
-	{"cod": "233-0", "desc": "Cooperativas de Consumo"},
-	{"cod": "303-4", "desc": "Serviço Notarial e Registral (Cartório)"},
-	{"cod": "306-9", "desc": "Fundação Privada"},
-	{"cod": "307-7", "desc": "Serviço Social Autônomo"},
-	{"cod": "308-5", "desc": "Condomínio Edilício"},
-	{"cod": "310-7", "desc": "Comissão de Conciliação Prévia"},
-	{"cod": "311-5", "desc": "Entidade de Mediação e Arbitragem"},
-	{"cod": "313-1", "desc": "Entidade Sindical"},
-	{"cod": "320-4", "desc": "Estabelecimento, no Brasil, de Fundação ou Associação Estrangeiras"},
-	{"cod": "321-2", "desc": "Fundação ou Associação Domiciliada no Exterior"},
-	{"cod": "322-0", "desc": "Organização Religiosa"},
-	{"cod": "323-9", "desc": "Comunidade Indígena"},
-	{"cod": "324-7", "desc": "Fundo Privado"},
-	{"cod": "325-5", "desc": "Órgão de Direção Nacional de Partido Político"},
-	{"cod": "326-3", "desc": "Órgão de Direção Regional de Partido Político"},
-	{"cod": "327-1", "desc": "Órgão de Direção Local de Partido Político"},
-	{"cod": "328-0", "desc": "Comitê Financeiro de Partido Político"},
-	{"cod": "329-8", "desc": "Frente Plebiscitária ou Referendária"},
-	{"cod": "330-1", "desc": "Organização Social (OS)"},
-	{"cod": "331-0", "desc": "Demais Condomínios"},
-	{"cod": "399-9", "desc": "Associação Privada"},
-	{"cod": "401-4", "desc": "Empresa Individual Imobiliária"},
-	{"cod": "402-2", "desc": "Segurado Especial"},
-	{"cod": "408-1", "desc": "Contribuinte individual"},
-	{"cod": "409-0", "desc": "Candidato a Cargo Político Eletivo"},
-	{"cod": "411-1", "desc": "Leiloeiro"},
-	{"cod": "412-0", "desc": "Produtor Rural (Pessoa Física)"},
-	{"cod": "501-0", "desc": "Organização Internacional"},
-	{"cod": "502-9", "desc": "Representação Diplomática Estrangeira"},
-	{"cod": "503-7", "desc": "Outras Instituições Extraterritoriais "}
+    {
+        "cod": "1015",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Executivo Federal"
+    },
+    {
+        "cod": "1023",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Executivo Estadual ou do Distrito Federal"
+    },
+    {
+        "cod": "1031",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Executivo Municipal"
+    },
+    {
+        "cod": "1040",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Legislativo Federal"
+    },
+    {
+        "cod": "1058",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Legislativo Estadual ou do Distrito Federal"
+    },
+    {
+        "cod": "1066",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Legislativo Municipal"
+    },
+    {
+        "cod": "1074",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Judici\u00c3rio Federal"
+    },
+    {
+        "cod": "1082",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico do Poder Judici\u00c3rio Estadual"
+    },
+    {
+        "cod": "1104",
+        "desc": "Autarquia Federal"
+    },
+    {
+        "cod": "1112",
+        "desc": "Autarquia Estadual ou do Distrito Federal"
+    },
+    {
+        "cod": "1120",
+        "desc": "Autarquia Municipal"
+    },
+    {
+        "cod": "1139",
+        "desc": "Funda\u00c3\u00c3o P\u00c3\u00bablica de Direito P\u00c3\u00bablico Federal"
+    },
+    {
+        "cod": "1147",
+        "desc": "Funda\u00c3\u00c3o P\u00c3\u00bablica de Direito P\u00c3\u00bablico Estadual ou do Distrito Federal"
+    },
+    {
+        "cod": "1155",
+        "desc": "Funda\u00c3\u00c3o P\u00c3\u00bablica de Direito P\u00c3\u00bablico Municipal"
+    },
+    {
+        "cod": "1163",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico Aut\u00c3nomo Federal"
+    },
+    {
+        "cod": "1171",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico Aut\u00c3nomo Estadual ou do Distrito Federal"
+    },
+    {
+        "cod": "1180",
+        "desc": "\u00c3rg\u00c3o P\u00c3\u00bablico Aut\u00c3nomo Municipal"
+    },
+    {
+        "cod": "1198",
+        "desc": "Comiss\u00c3o Polinacional"
+    },
+    {
+        "cod": "1201",
+        "desc": "Fundo P\u00c3\u00bablico"
+    },
+    {
+        "cod": "1210",
+        "desc": "Cons\u00c3\u00b3rcio P\u00c3\u00bablico de Direito P\u00c3\u00bablico Associa\u00c3\u00c3o P\u00c3\u00bablica"
+    },
+    {
+        "cod": "1228",
+        "desc": "Cons\u00c3\u00b3rcio P\u00c3\u00bablico de Direito Privado"
+    },
+    {
+        "cod": "1236",
+        "desc": "Estado ou Distrito Federal"
+    },
+    {
+        "cod": "1244",
+        "desc": "Munic\u00c3pio"
+    },
+    {
+        "cod": "1252",
+        "desc": "Funda\u00c3\u00c3o P\u00c3\u00bablica de Direito Privado Federal"
+    },
+    {
+        "cod": "1260",
+        "desc": "Funda\u00c3\u00c3o P\u00c3\u00bablica de Direito Privado Estadual ou do Distrito Federal"
+    },
+    {
+        "cod": "1279",
+        "desc": "Funda\u00c3\u00c3o P\u00c3\u00bablica de Direito Privado Municipal"
+    },
+    {
+        "cod": "2011",
+        "desc": "Empresa P\u00c3\u00bablica"
+    },
+    {
+        "cod": "2038",
+        "desc": "Sociedade de Economia Mista"
+    },
+    {
+        "cod": "2046",
+        "desc": "Sociedade An\u00c3nima Aberta"
+    },
+    {
+        "cod": "2054",
+        "desc": "Sociedade An\u00c3nima Fechada"
+    },
+    {
+        "cod": "2062",
+        "desc": "Sociedade Empres\u00c3ria Limitada"
+    },
+    {
+        "cod": "2070",
+        "desc": "Sociedade Empres\u00c3ria em Nome Coletivo"
+    },
+    {
+        "cod": "2089",
+        "desc": "Sociedade Empres\u00c3ria em Comandita Simples"
+    },
+    {
+        "cod": "2097",
+        "desc": "Sociedade Empres\u00c3ria em Comandita por A\u00c3\u00c3\u00b5es"
+    },
+    {
+        "cod": "2127",
+        "desc": "Sociedade em Conta de Participa\u00c3\u00c3o"
+    },
+    {
+        "cod": "2135",
+        "desc": "Empres\u00c3rio Individual"
+    },
+    {
+        "cod": "2143",
+        "desc": "Cooperativa"
+    },
+    {
+        "cod": "2151",
+        "desc": "Cons\u00c3\u00b3rcio de Sociedades"
+    },
+    {
+        "cod": "2160",
+        "desc": "Grupo de Sociedades"
+    },
+    {
+        "cod": "2178",
+        "desc": "Estabelecimento no Brasil de Sociedade Estrangeira"
+    },
+    {
+        "cod": "2194",
+        "desc": "Estabelecimento no Brasil de Empresa Binacional ArgentinoBrasileira"
+    },
+    {
+        "cod": "2216",
+        "desc": "Empresa Domiciliada no Exterior"
+    },
+    {
+        "cod": "2224",
+        "desc": "ClubeFundo de Investimento"
+    },
+    {
+        "cod": "2232",
+        "desc": "Sociedade Simples Pura"
+    },
+    {
+        "cod": "2240",
+        "desc": "Sociedade Simples Limitada"
+    },
+    {
+        "cod": "2259",
+        "desc": "Sociedade Simples em Nome Coletivo"
+    },
+    {
+        "cod": "2267",
+        "desc": "Sociedade Simples em Comandita Simples "
+    },
+    {
+        "cod": "2275",
+        "desc": "Empresa Binacional"
+    },
+    {
+        "cod": "2283",
+        "desc": "Cons\u00c3\u00b3rcio de Empregadores"
+    },
+    {
+        "cod": "2291",
+        "desc": "Cons\u00c3\u00b3rcio Simples"
+    },
+    {
+        "cod": "2305",
+        "desc": "Empresa Individual de Responsabilidade Limitada de Natureza Empres\u00c3ria"
+    },
+    {
+        "cod": "2313",
+        "desc": "Empresa Individual de Responsabilidade Limitada de Natureza Simples"
+    },
+    {
+        "cod": "2321",
+        "desc": "Sociedade Unipessoal de Advogados"
+    },
+    {
+        "cod": "2330",
+        "desc": "Cooperativas de Consumo"
+    },
+    {
+        "cod": "3034",
+        "desc": "Servi\u00c3o Notarial e Registral Cart\u00c3\u00b3rio"
+    },
+    {
+        "cod": "3069",
+        "desc": "Funda\u00c3\u00c3o Privada"
+    },
+    {
+        "cod": "3077",
+        "desc": "Servi\u00c3o Social Aut\u00c3nomo"
+    },
+    {
+        "cod": "3085",
+        "desc": "Condom\u00c3nio Edil\u00c3cio"
+    },
+    {
+        "cod": "3107",
+        "desc": "Comiss\u00c3o de Concilia\u00c3\u00c3o Pr\u00c3via"
+    },
+    {
+        "cod": "3115",
+        "desc": "Entidade de Media\u00c3\u00c3o e Arbitragem"
+    },
+    {
+        "cod": "3131",
+        "desc": "Entidade Sindical"
+    },
+    {
+        "cod": "3204",
+        "desc": "Estabelecimento no Brasil de Funda\u00c3\u00c3o ou Associa\u00c3\u00c3o Estrangeiras"
+    },
+    {
+        "cod": "3212",
+        "desc": "Funda\u00c3\u00c3o ou Associa\u00c3\u00c3o Domiciliada no Exterior"
+    },
+    {
+        "cod": "3220",
+        "desc": "Organiza\u00c3\u00c3o Religiosa"
+    },
+    {
+        "cod": "3239",
+        "desc": "Comunidade Ind\u00c3gena"
+    },
+    {
+        "cod": "3247",
+        "desc": "Fundo Privado"
+    },
+    {
+        "cod": "3255",
+        "desc": "\u00c3rg\u00c3o de Dire\u00c3\u00c3o Nacional de Partido Pol\u00c3tico"
+    },
+    {
+        "cod": "3263",
+        "desc": "\u00c3rg\u00c3o de Dire\u00c3\u00c3o Regional de Partido Pol\u00c3tico"
+    },
+    {
+        "cod": "3271",
+        "desc": "\u00c3rg\u00c3o de Dire\u00c3\u00c3o Local de Partido Pol\u00c3tico"
+    },
+    {
+        "cod": "3280",
+        "desc": "Comit\u00c3\u00aa Financeiro de Partido Pol\u00c3tico"
+    },
+    {
+        "cod": "3298",
+        "desc": "Frente Plebiscit\u00c3ria ou Referend\u00c3ria"
+    },
+    {
+        "cod": "3301",
+        "desc": "Organiza\u00c3\u00c3o Social OS"
+    },
+    {
+        "cod": "3310",
+        "desc": "Demais Condom\u00c3nios"
+    },
+    {
+        "cod": "3999",
+        "desc": "Associa\u00c3\u00c3o Privada"
+    },
+    {
+        "cod": "4014",
+        "desc": "Empresa Individual Imobili\u00c3ria"
+    },
+    {
+        "cod": "4022",
+        "desc": "Segurado Especial"
+    },
+    {
+        "cod": "4081",
+        "desc": "Contribuinte individual"
+    },
+    {
+        "cod": "4090",
+        "desc": "Candidato a Cargo Pol\u00c3tico Eletivo"
+    },
+    {
+        "cod": "4111",
+        "desc": "Leiloeiro"
+    },
+    {
+        "cod": "4120",
+        "desc": "Produtor Rural Pessoa F\u00c3sica"
+    },
+    {
+        "cod": "5010",
+        "desc": "Organiza\u00c3\u00c3o Internacional"
+    },
+    {
+        "cod": "5029",
+        "desc": "Representa\u00c3\u00c3o Diplom\u00c3tica Estrangeira"
+    },
+    {
+        "cod": "5037",
+        "desc": "Outras Institui\u00c3\u00c3\u00b5es Extraterritoriais "
+    }
 ]

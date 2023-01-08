@@ -3,12 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPessoa } from './../interfaces';
 import { saveAs } from 'file-saver';
 import { GeradorDeDadosService } from '../gerador-cpf-cnpj.service';
-///Exemplo de gerador de CPF/CNPJ
-///Testando compenetização e árvore de modificação no DOM com Angular
-///https://codepen.io/WalterNascimento/pen/xxVRKgm
-///https://medium.com/walternascimentobarroso-pt/gerador-de-cpf-e-cnpj-com-javascript-408b751f3afc
-
-
 
 @Component({
   selector: 'module-documento',
@@ -48,7 +42,8 @@ export class CpfComponent implements OnInit {
       return {
         documento: documento,
         cnae: this.geradorCpfCnpjService.cnae(false),
-        naturezaJuridica: this.geradorCpfCnpjService.naturezaJuridica(false)
+        naturezaJuridica: this.geradorCpfCnpjService.naturezaJuridica(false),
+        razaoSocial: this.geradorCpfCnpjService.razaoSocial()
       }
   }
 

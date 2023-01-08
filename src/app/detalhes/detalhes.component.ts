@@ -60,7 +60,7 @@ export class DetalhesComponent implements OnInit {
      this.metadata[item] = this.service.aplicarMascara(valor);
   }
   if(ativarMascara == false && aplicarMascara.includes(item)){
-  this.metadata[item] = valor.replace(/[^\w\s]/gi, '')
+    this.metadata[item] = valor.replace(/[^\w\s]/gi, '')
   }
 }
 
