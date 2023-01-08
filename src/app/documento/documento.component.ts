@@ -46,7 +46,9 @@ export class CpfComponent implements OnInit {
       }
       }
       return {
-        documento: documento
+        documento: documento,
+        cnae: this.geradorCpfCnpjService.cnae(false),
+        naturezaJuridica: this.geradorCpfCnpjService.naturezaJuridica(false)
       }
   }
 

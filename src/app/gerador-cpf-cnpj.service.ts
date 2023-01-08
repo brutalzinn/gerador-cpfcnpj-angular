@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import cnaeMock from "./mocks/cnae.json";
+import naturezaMock from "./mocks/natureza.json";
 
 @Injectable({
   providedIn: 'root'
@@ -10,33 +12,64 @@ export class GeradorDeDadosService {
   public number_random = (number: number) => (Math.round(Math.random() * number));
   public create_array = (total: number, numero: number) => Array.from(Array(total), () => this.number_random(numero));
   public mod = (dividendo: number, divisor: number) => Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
-  public texto_to_array = (texto: string) =>  texto.split('');
+  public text_to_array = (texto: string) =>  texto.split('');
 
 
 
-  public aplicarMascara(texto: string){
+  public aplicarMascara(text: string){
   //preciso tratar isso para remover qualquer tipo de formatação no string.
-  texto = texto.replace(/[^\w\s]/gi, '')
-  let ehCpf = texto.length == 11
-  let ehCNPJ = texto.length == 14
-  let ehRG = texto.length == 9
+  text = text.replace(/[^\w\s]/gi, '')
+  let ehCpf = text.length == 11
+  let ehCNPJ = text.length == 14
+  let ehRG = text.length == 9
+  let ehCnae = text.length == 7
+  let ehNaturezaJuridica = text.length == 4
+
   if(ehCpf){
-        let [n1, n2, n3, n4, n5, n6, n7, n8,n9,d1,d2] = this.texto_to_array(texto);
+        let [n1, n2, n3, n4, n5, n6, n7, n8,n9,d1,d2] = this.text_to_array(text);
         return `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`;
   }
    if(ehCNPJ){
-        let [n1, n2, n3, n4, n5, n6, n7, n8,n9,n10,n11,n12, d1,d2] = this.texto_to_array(texto);
+        let [n1, n2, n3, n4, n5, n6, n7, n8,n9,n10,n11,n12, d1,d2] = this.text_to_array(text);
         return `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}/${n9}${n10}${n11}${n12}-${d1}${d2}`;
   }
   if(ehRG){
-    let [n1, n2, n3, n4, n5, n6, n7, n8,d1] = this.texto_to_array(texto);
+    let [n1, n2, n3, n4, n5, n6, n7, n8,d1] = this.text_to_array(text);
     return `${n1}${n2}.${n3}${n4}${n5}.${n6}${n7}${n8}-${d1}`;
   }
 
-  return texto
+ if(ehCnae){
+    let [n1, n2, n3, n4, n5, n6, n7] = this.text_to_array(text);
+    return `${n1}${n2}${n3}${n4}-${n5}/${n6}${n7}`;
+  }
+
+   if(ehNaturezaJuridica){
+    let [n1, n2, n3, n4] = this.text_to_array(text);
+    return `${n1}${n2}${n3}-${n4}`;
+  }
+
+  return text;
 }
 
+public cnae(mascara: boolean){
+    let randomIndex =  this.number_random(cnaeMock.length);
+    let cnae = cnaeMock[randomIndex];
+    let [n1, n2, n3, n4, n5, n6, n7] = this.text_to_array(cnae.cod);
+    if (mascara)
+      return `${n1}${n2}${n3}${n4}-${n5}/${n6}${n7}`;
+    else
+      return `${n1}${n2}${n3}${n4}${n5}${n6}${n7}`;
+}
 
+public naturezaJuridica(mascara: boolean){
+    let randomIndex =  this.number_random(naturezaMock.length);
+    let naturezaJuridica = naturezaMock[randomIndex];
+    let [n1, n2, n3, n4] = this.text_to_array(naturezaJuridica.cod);
+    if (mascara)
+      return `${n1}${n2}${n3}-${n4}`;
+    else
+      return `${n1}${n2}${n3}${n4}`;
+}
 
   public rg(mascara: boolean){
     let total_array = 9;

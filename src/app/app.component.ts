@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { timer } from 'rxjs/internal/observable/timer';
 import { CpfComponent } from './documento/documento.component';
-import * as $ from 'jquery';
+import $ from 'jquery';
 import { IPessoa } from './interfaces';
 
 @Component({

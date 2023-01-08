@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import * as $ from 'jquery';
-import { timer } from 'rxjs/internal/observable/timer';
+import $ from 'jquery';
 import { GeradorDeDadosService } from '../gerador-cpf-cnpj.service';
 
 @Component({
@@ -54,7 +52,7 @@ export class DetalhesComponent implements OnInit {
 
   eventoMascaraToggle(event: any){
   let ativarMascara = event.target.checked
-  let aplicarMascara = ['rg', 'documento']
+  let aplicarMascara = ['rg', 'documento', 'cnae', 'naturezaJuridica']
   for(let item in this.metadata){
     let valor = this.metadata[item]
   if(ativarMascara && aplicarMascara.includes(item))
