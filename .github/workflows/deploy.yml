@@ -1,5 +1,4 @@
-name: "deploy"
-
+name: "Deploy to dokku"
 # yamllint disable-line rule:truthy
 on:
   push:
