@@ -4,6 +4,6 @@ export const environment = {
   apiKey: '',
   envVar: {
     baseUrl: 'http://example.com',
-    apiKey: 'myapikey'
-  }
+    apiKey: "eujogolol"
+}
 };
