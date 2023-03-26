@@ -18,7 +18,8 @@ export class HttpGeradorDeDadosService {
     'Content-Type':  'application/json',
     'ApiKey': environment.apiKey
   })
-};
+  };
+
   obterDadosReceitaWS(filtrosocio: FiltroSocio, normalizado: boolean) : Observable<IReceitaWS> {
     return this.http.get<IReceitaWS>(`${environment.baseUrl}/obterCNPJValido/${filtrosocio}/Aleatorio/${normalizado}`, this.httpOptions);
   }

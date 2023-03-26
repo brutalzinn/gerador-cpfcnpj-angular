@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: "",
-  apiKey: ""
+  baseUrl: "" || process.env['baseUrl'],
+  apiKey: "" || process.env['apiKey']
 };
