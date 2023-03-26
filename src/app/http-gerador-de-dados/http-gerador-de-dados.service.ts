@@ -16,12 +16,12 @@ export class HttpGeradorDeDadosService {
   httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'ApiKey': environment.apiKey
+    'ApiKey': environment.envVar.apiKey
   })
   };
 
   obterDadosReceitaWS(filtrosocio: FiltroSocio, normalizado: boolean) : Observable<IReceitaWS> {
-    return this.http.get<IReceitaWS>(`${environment.baseUrl}/obterCNPJValido/${filtrosocio}/Aleatorio/${normalizado}`, this.httpOptions);
+    return this.http.get<IReceitaWS>(`${environment.envVar.baseUrl}/obterCNPJValido/${filtrosocio}/Aleatorio/${normalizado}`, this.httpOptions);
   }
 
 }

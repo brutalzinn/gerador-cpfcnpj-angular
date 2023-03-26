@@ -1,6 +1,8 @@
 
 export const environment = {
   production: true,
-  baseUrl: "",
-  apiKey: ""
+  envVar: {
+      baseUrl: "",
+      apiKey: ""
+  }
 };

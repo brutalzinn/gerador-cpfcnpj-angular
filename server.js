@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express(),
     bodyParser = require("body-parser");
-port = process.env.PORT || 5001;
+port = process.env.PORT || 3030;
 
 app.use(bodyParser.json());
 app.use(express.static(process.cwd() + "/dist/my-app/"));
