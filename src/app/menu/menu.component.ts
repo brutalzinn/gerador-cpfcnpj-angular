@@ -41,7 +41,7 @@ export class MenuDocumentoComponent implements OnInit {
         }
   }
 
-  private criarMetadataPJ(pessoa: IPessoa) : object {
+  private criarMetadataPessoaJuridica(pessoa: IPessoa) : object {
       let documento = pessoa.documento.replace(/[^\w\s]/gi, '')
       return {
           documento: documento,
@@ -57,42 +57,75 @@ export class MenuDocumentoComponent implements OnInit {
           documento: documento,
           quantidadeSocios: receitaws.qsa.length,
           cnae: receitaws.atividadePrincipal[0].code,
+          cnaeAleatorio: this.geradorDeDados.cnae(false),
           naturezaJuridica: receitaws.naturezaJuridica,
           razaoSocial: receitaws.porte
       }
   }
 
   public criarPessoas() {
+    let mascara: boolean = this.mascara.value;
     for (var i = 0; i < this.quantidade.value; i++) {
-      const pessoa: IPessoa = {
-        criadoEm: new Date(),
-        atualizadoEm: new Date(),
-        tipoPF: this.tipo.value === "cpf",
-        documento: this.gerarDocumento(),
-        usado: false,
-        receitaWS: false
+
+      if(this.tipoPessoaFisica()) {
+         this.criarPessoaFisica(mascara);
       }
-      if(pessoa.tipoPF) {
-          pessoa.metadata = this.criarMetadataPF(pessoa);
+      else if(this.receitaWS.value && this.tipoPessoaFisica() == false){
+          this.criarPessoaJuridicaReceitaWS(mascara);
       }
-      if(this.receitaWS.value && pessoa.tipoPF == false){
-          pessoa.documento = "Solicitando.."
-          this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value, true).subscribe(response => {
-            pessoa.documento = response.cnpj
-            pessoa.metadata = this.criarMetadataReceitaWS(response);
-            pessoa.receitaWS = true;
-          },(error) => {
-          pessoa.documento = "Solicitação falhou.. :("
-          })
-      }else{
-          pessoa.metadata = this.criarMetadataPJ(pessoa);
+      else{
+        this.criarPessoaJuridica(mascara);
       }
-      this.add(pessoa);
     }
   }
 
-  public add(cpfModel: IPessoa) {
-    this.items.push(cpfModel);
+
+  private criarPessoaJuridica(mascara: boolean){
+    const pessoa: IPessoa = {
+          criadoEm: new Date(),
+          atualizadoEm: new Date(),
+          tipoPF: false,
+          documento: this.geradorDeDados.cnpj(mascara),
+          usado: false,
+          receitaWS: false,
+        }
+        pessoa.metadata = this.criarMetadataPessoaJuridica(pessoa);
+        this.add(pessoa);
+  }
+
+  private criarPessoaJuridicaReceitaWS(mascara: boolean){
+  const pessoa: IPessoa = {
+        criadoEm: new Date(),
+        atualizadoEm: new Date(),
+        tipoPF: false,
+        documento: "Solicitando..",
+        usado: false,
+        receitaWS: true,
+      }
+      this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value, true).subscribe(response => {
+            pessoa.documento = response.cnpj
+            pessoa.metadata = this.criarMetadataReceitaWS(response);
+             this.add(pessoa);
+          },(error) => {
+            alert("A solicitação falhou. Coisa boa! Pega um café e relaxa!")
+      })
+
+  }
+  private criarPessoaFisica(mascara: boolean){
+   const pessoa: IPessoa = {
+        criadoEm: new Date(),
+        atualizadoEm: new Date(),
+        tipoPF: true,
+        documento: this.geradorDeDados.cpf(mascara),
+        usado: false,
+        receitaWS: false,
+      }
+      pessoa.metadata = this.criarMetadataPF(pessoa)
+      this.add(pessoa);
+  }
+
+  public add(pessoaModel: IPessoa) {
+    this.items.push(pessoaModel);
   }
 
   public deletar(index: number) {
