@@ -82,10 +82,10 @@ export class MenuDocumentoComponent implements OnInit {
             pessoa.metadata = this.criarMetadataReceitaWS(response);
             pessoa.receitaWS = true;
           },(error) => {
-
+          pessoa.documento = "Solicitação falhou.. :("
           })
       }else{
-            pessoa.metadata = this.criarMetadataPJ(pessoa);
+          pessoa.metadata = this.criarMetadataPJ(pessoa);
       }
       this.add(pessoa);
     }
