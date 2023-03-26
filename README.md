@@ -2,4 +2,4 @@
 
 # Em desenvolvimento
 
-https://gerador.robertocpaes.dev/
+https://gerador-cpfcnpj-angular.vercel.app/
