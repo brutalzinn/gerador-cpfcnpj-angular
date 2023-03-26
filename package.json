@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --configuration deploy",
     "build": "ng build",
-    "deploy": "npm run ng run my-app:collect-vars && ng build",
-    "watch": "ng build --watch --configuration development",
+    "deploy": "ng run my-app:collect-vars && ng build --configuration deploy",
+    "watch": "ng build --watch --configuration deploy",
     "test": "ng test"
   },
   "private": true,

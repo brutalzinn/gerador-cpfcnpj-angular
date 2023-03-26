@@ -3,7 +3,7 @@ export const environment = {
   baseUrl: "",
   apiKey: "",
   envVar: {
-    baseUrl: "",
-    apiKey: ""
+      baseUrl: "",
+      apiKey: ""
 }
 };
