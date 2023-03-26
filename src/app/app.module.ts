@@ -3,16 +3,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CpfComponent } from './documento/documento.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { GeradorDeDadosService } from './gerador-cpf-cnpj.service';
 import { DetalhesComponent } from './detalhes/detalhes.component';
+import { MenuDocumentoComponent } from './menu/menu.component';
+import { GeradorService } from './gerador.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
+  MenuDocumentoComponent,
     AppComponent,
-    CpfComponent,
     HeaderComponent,
     FooterComponent,
     DetalhesComponent,
@@ -20,9 +21,10 @@ import { DetalhesComponent } from './detalhes/detalhes.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [GeradorDeDadosService],
+  providers: [GeradorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,5 +4,7 @@ export interface IPessoa {
   criadoEm: Date;
   atualizadoEm: Date;
   usado: boolean;
+  receitaWS: boolean;
   metadata?: object;
 }
+

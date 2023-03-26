@@ -1,8 +1,8 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { timer } from 'rxjs/internal/observable/timer';
-import { CpfComponent } from './documento/documento.component';
+import { MenuDocumentoComponent } from './menu/menu.component';
 import $ from 'jquery';
-import { IPessoa } from './interfaces';
+import { IPessoa } from './pessoa.interface';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { IPessoa } from './interfaces';
 })
 export class AppComponent implements AfterViewInit {
 
-  @ViewChild(CpfComponent) child: any;
+  @ViewChild(MenuDocumentoComponent) child: any;
 
   title = 'Gerador CPFCNPJ';
 

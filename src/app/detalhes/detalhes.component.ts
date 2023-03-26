@@ -1,19 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import $ from 'jquery';
-import { GeradorDeDadosService } from '../gerador-cpf-cnpj.service';
+import { GeradorService } from '../gerador.service';
 
 @Component({
   selector: 'app-detalhes',
   templateUrl: './detalhes.component.html',
-  styleUrls: ['./detalhes.component.css']
 })
 export class DetalhesComponent implements OnInit {
   @Input('metadata') metadata: any;
   public documento: any;
 
-  constructor(private service: GeradorDeDadosService) {
+    constructor(private geradorDeDados: GeradorService) {
 
-  }
+    }
 
   ngOnInit(): void {
     this.documento = this.metadata.documento.replace(/[^\w\s]/gi, '')
@@ -57,7 +56,7 @@ export class DetalhesComponent implements OnInit {
     let valor = this.metadata[item]
   if(ativarMascara && aplicarMascara.includes(item))
   {
-     this.metadata[item] = this.service.aplicarMascara(valor);
+     this.metadata[item] = this.geradorDeDados.aplicarMascara(valor);
   }
   if(ativarMascara == false && aplicarMascara.includes(item)){
     this.metadata[item] = valor.replace(/[^\w\s]/gi, '')

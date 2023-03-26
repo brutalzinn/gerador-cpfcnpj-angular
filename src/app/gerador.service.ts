@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import cnaeMock from "./mocks/cnae.json";
 import naturezaMock from "./mocks/natureza.json";
 import razaoSocialMock from "./mocks/razao_social.json";
-
 @Injectable({
   providedIn: 'root'
 })
-export class GeradorDeDadosService {
+export class GeradorService {
 
-  constructor() { }
+ constructor() { }
 
   public number_random = (number: number) => (Math.round(Math.random() * number));
   public create_array = (total: number, numero: number) => Array.from(Array(total), () => this.number_random(numero));
@@ -55,7 +54,7 @@ export class GeradorDeDadosService {
 public razaoSocial(){
     let randomIndex =  this.number_random(razaoSocialMock.length);
     let razaoSocial = razaoSocialMock[randomIndex];
-    return razaoSocial;    
+    return razaoSocial;
 }
 
 public cnae(mascara: boolean){
