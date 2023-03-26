@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver';
 import { GeradorService } from '../gerador.service';
 import { HttpGeradorDeDadosService } from '../http-gerador-de-dados/http-gerador-de-dados.service';
 import { IReceitaWS } from '../receitaws.intefaces';
-import { FiltroSocio } from '../filtrosocio.enum';
+import { FiltroSituacao, FiltroSocio } from '../filtro.interface';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,6 +23,7 @@ export class MenuDocumentoComponent implements OnInit {
       tipo: new FormControl('cpf'),
       mascara: new FormControl(false),
       receitaWS: new FormControl(false),
+      filtroSituacao: new FormControl<FiltroSituacao>(FiltroSituacao.Aleatorio),
       filtroSocio: new FormControl<FiltroSocio>(FiltroSocio.Aleatorio)
     })
   }
@@ -106,7 +107,7 @@ export class MenuDocumentoComponent implements OnInit {
         usado: false,
         receitaWS: true,
       }
-      this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value, true).subscribe(response => {
+      this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value,this.filtroSituacao.value,  true).subscribe(response => {
             pessoa.documento = response.cnpj
             pessoa.metadata = this.criarMetadataReceitaWS(response);
              this.add(pessoa);
@@ -148,9 +149,11 @@ export class MenuDocumentoComponent implements OnInit {
   get receitaWS() {
     return this.mainForm.get('receitaWS')!;
   }
-
   get filtroSocio() {
     return this.mainForm.get('filtroSocio')!;
+  }
+  get filtroSituacao() {
+    return this.mainForm.get('filtroSituacao')!;
   }
   get controls() {
     return this.mainForm.controls;
@@ -210,6 +213,11 @@ export class MenuDocumentoComponent implements OnInit {
   public obterFiltroSocio () : FiltroSocio[]{
     return [FiltroSocio.Aleatorio, FiltroSocio.UnicoSocio, FiltroSocio.VariosSocios]
   }
+
+  public obterFiltroSituacao () : FiltroSituacao[]{
+    return [FiltroSituacao.Aleatorio, FiltroSituacao.Ativa, FiltroSituacao.Baixada]
+  }
+
 
   public mostrarOpcaoPessoaJuridica() : boolean{
     return this.tipoPessoaFisica() == false

@@ -41,15 +41,25 @@
             <input class="form-check-input" type="checkbox" value="receitaWS" id="receitaWS" formControlName="receitaWS">
             <label class="form-check-label" for="receitaWS">Integração ReceitaWS</label>
         </div>
-
-        <select *ngIf="this.mostrarOpcaoReceitaWS()" id="custom-select" formControlName="filtroSocio">
-            <label class="form-check-label" for="custom-select">Integração ReceitaWS</label>
+    <!-- forma bem errada de estilizar. Mas não devo voltar aqui até sexta feira. -->
+    <div *ngIf="this.mostrarOpcaoReceitaWS()" class="input-group mb-3">
+        <label class="form-check-label" for="filtro-socio">Filtro sócio:</label>
+        <select  id="filtro-socio" formControlName="filtroSocio">
             <option [ngValue]="filtroSocio" *ngFor="let filtroSocio of this.obterFiltroSocio()">{{
               filtroSocio
             }}</option>
         </select>
-
     </div>
+    <div *ngIf="this.mostrarOpcaoReceitaWS()" class="input-group mb-3" >
+        <label class="form-check-label" for=filtro-situacao>Filtro situacao:</label>
+        <select  id="filtro-situacao"   formControlName="filtroSituacao">
+            <option [ngValue]="filtroSituacao" *ngFor="let filtroSituacao of this.obterFiltroSituacao()">{{
+              filtroSituacao
+            }}</option>
+        </select>
+      </div>
+    </div>
+
 
     <div class="input-group mb-3">
         <div class="form-check form-switch">

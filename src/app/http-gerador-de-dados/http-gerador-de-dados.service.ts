@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { IReceitaWS } from '../receitaws.intefaces';
 import { Observable } from 'rxjs';
-import { FiltroSocio } from '../filtrosocio.enum';
+import { FiltroSituacao, FiltroSocio } from '../filtro.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,8 @@ export class HttpGeradorDeDadosService {
   })
   };
 
-  obterDadosReceitaWS(filtrosocio: FiltroSocio, normalizado: boolean) : Observable<IReceitaWS> {
-    return this.http.get<IReceitaWS>(`${environment.envVar.baseUrl}/obterCNPJValido/${filtrosocio}/Aleatorio/${normalizado}/false`, this.httpOptions);
+  obterDadosReceitaWS(filtrosocio: FiltroSocio, filtroSituacao: FiltroSituacao, normalizado: boolean) : Observable<IReceitaWS> {
+    return this.http.get<IReceitaWS>(`${environment.envVar.baseUrl}/obterCNPJValido/${filtrosocio}/${filtroSituacao}/${normalizado}/false`, this.httpOptions);
   }
 
 }
