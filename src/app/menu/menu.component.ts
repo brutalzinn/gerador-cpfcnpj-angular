@@ -59,7 +59,6 @@ export class MenuDocumentoComponent implements OnInit {
           documento: documento,
           quantidadeSocios: receitaws.qsa.length,
           cnae: receitaws.atividadePrincipal[0].code,
-          cnaeAleatorio: this.geradorDeDados.cnae(false),
           naturezaJuridica: receitaws.naturezaJuridica,
           razaoSocial: receitaws.porte
       }
