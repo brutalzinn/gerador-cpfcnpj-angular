@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "npm run ng run my-app:collect-vars && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -21,6 +22,7 @@
     "express": "^4.18.2",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.1",
+    "ng-process-env": "^15.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
