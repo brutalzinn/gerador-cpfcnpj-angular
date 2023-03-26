@@ -5,8 +5,9 @@ import { saveAs } from 'file-saver';
 import { GeradorService } from '../gerador.service';
 import { HttpGeradorDeDadosService } from '../http-gerador-de-dados/http-gerador-de-dados.service';
 import { IReceitaWS } from '../receitaws.intefaces';
-import { FiltroSituacao, FiltroSocio } from '../filtro.interface';
+import { IFiltroSituacao, IFiltroSocio } from '../filtro.interface';
 import { environment } from 'src/environments/environment';
+import { IErro } from '../erro.interface.ts';
 
 @Component({
   selector: 'app-menu',
@@ -15,17 +16,21 @@ import { environment } from 'src/environments/environment';
 
 export class MenuDocumentoComponent implements OnInit {
   private quantidadeMaxima : number = 10
+  public mensagemDeErro: IErro;
+  private carregando : boolean = false;
   public items: Array<IPessoa> = [];
   public mainForm: FormGroup;
+
   constructor(private geradorDeDados: GeradorService, private httpGeradorDeDadosService: HttpGeradorDeDadosService) {
     this.mainForm = new FormGroup({
       quantidade: new FormControl(1, [Validators.required, Validators.min(1),Validators.max(this.quantidadeMaxima), Validators.pattern("^[0-9]*$")]),
       tipo: new FormControl('cpf'),
       mascara: new FormControl(false),
       receitaWS: new FormControl(false),
-      filtroSituacao: new FormControl<FiltroSituacao>(FiltroSituacao.Aleatorio),
-      filtroSocio: new FormControl<FiltroSocio>(FiltroSocio.Aleatorio)
+      filtroSituacao: new FormControl<IFiltroSituacao>(IFiltroSituacao.Aleatorio),
+      filtroSocio: new FormControl<IFiltroSocio>(IFiltroSocio.Aleatorio)
     })
+   this.mensagemDeErro = {mostrar: false, mensagem: "", tipo:"negocio"}
   }
 
   public clear() {
@@ -34,7 +39,7 @@ export class MenuDocumentoComponent implements OnInit {
     // this.items = [];
   }
 
-  private criarMetadataPF(pessoa : IPessoa) : object{
+  private criarMetadataPessoaFisica(pessoa : IPessoa) : object{
       let documento = pessoa.documento.replace(/[^\w\s]/gi, '')
       return {
             documento: documento,
@@ -70,6 +75,8 @@ export class MenuDocumentoComponent implements OnInit {
       return
     }
     let mascara: boolean = this.mascara.value;
+    this.mensagemDeErro.mostrar = false;
+    this.carregando = true
     for (var i = 0; i < this.quantidade.value; i++) {
       if(this.tipoPessoaFisica()) {
          this.criarPessoaFisica(mascara);
@@ -81,6 +88,7 @@ export class MenuDocumentoComponent implements OnInit {
         this.criarPessoaJuridica(mascara);
       }
     }
+    this.carregando = false
   }
 
 
@@ -111,7 +119,8 @@ export class MenuDocumentoComponent implements OnInit {
             pessoa.metadata = this.criarMetadataReceitaWS(response);
              this.add(pessoa);
           },(error) => {
-            alert(`A solicitação para ${environment.envVar.baseUrl} falhou. Coisa boa! Pega um café e relaxa! \n ${error}`)
+            this.mensagemDeErro.mensagem = `A solicitação para ${environment.envVar.baseUrl} falhou. \n ${error}`
+            this.mensagemDeErro.mostrar = true
       })
 
   }
@@ -124,7 +133,7 @@ export class MenuDocumentoComponent implements OnInit {
         usado: false,
         receitaWS: false,
       }
-      pessoa.metadata = this.criarMetadataPF(pessoa)
+      pessoa.metadata = this.criarMetadataPessoaFisica(pessoa)
       this.add(pessoa);
   }
 
@@ -209,12 +218,12 @@ export class MenuDocumentoComponent implements OnInit {
       console.log("Ocorreu um erro ao ler o arquivo e você só vai saber se abrir o console :)")
     }
   }
-  public obterFiltroSocio () : FiltroSocio[]{
-    return [FiltroSocio.Aleatorio, FiltroSocio.UnicoSocio, FiltroSocio.VariosSocios]
+  public obterFiltroSocio () : IFiltroSocio[]{
+    return [IFiltroSocio.Aleatorio, IFiltroSocio.UnicoSocio, IFiltroSocio.VariosSocios]
   }
 
-  public obterFiltroSituacao () : FiltroSituacao[]{
-    return [FiltroSituacao.Aleatorio, FiltroSituacao.Ativa, FiltroSituacao.Baixada]
+  public obterFiltroSituacao () : IFiltroSituacao[]{
+    return [IFiltroSituacao.Aleatorio, IFiltroSituacao.Ativa, IFiltroSituacao.Baixada]
   }
 
 
@@ -223,6 +232,10 @@ export class MenuDocumentoComponent implements OnInit {
   }
   public mostrarOpcaoReceitaWS() : boolean{
     return this.tipoPessoaFisica() == false && this.receitaWS.value
+  }
+
+  public mostrarCarregando() : boolean{
+    return this.carregando
   }
 
   public baixarArquivoDocumento() {

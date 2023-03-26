@@ -1,10 +1,10 @@
-export enum FiltroSocio {
+export enum IFiltroSocio {
  UnicoSocio = "UnicoSocio",
  VariosSocios = "VariosSocios",
  Aleatorio = "Aleatorio"
 }
 
-export enum FiltroSituacao {
+export enum IFiltroSituacao {
  Ativa = "Ativa",
  Baixada = "Baixada",
  Aleatorio = "Aleatorio"

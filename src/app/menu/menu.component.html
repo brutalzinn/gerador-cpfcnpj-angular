@@ -7,7 +7,10 @@
             type="text" formControlName="quantidade">
         <button type="button" (click)="criarPessoas()" class="btn btn-primary">Criar CPFCNPJ</button>
     </div>
-
+    <div *ngIf="this.mensagemDeErro.mostrar" class="alert alert-danger">
+      Ops...
+      {{this.mensagemDeErro.mensagem}}
+    </div>
 
     <div *ngIf="controls['quantidade'].touched && controls['quantidade'].invalid" class="alert alert-danger">
         <div *ngIf="controls['quantidade'].errors && controls['quantidade'].errors['required']">Quantidade deve ser
