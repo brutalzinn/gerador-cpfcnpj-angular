@@ -50,5 +50,5 @@ export class AppComponent implements AfterViewInit {
   public excluirDocumento(index: number) {
     this.child.deletar(index);
   }
-  
+
 }

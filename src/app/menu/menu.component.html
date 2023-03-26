@@ -7,6 +7,7 @@
             type="text" formControlName="quantidade">
         <button type="button" (click)="criarPessoas()" class="btn btn-primary">Criar CPFCNPJ</button>
     </div>
+      {{this.mostrarCarregando()}}
       <div *ngIf="this.mostrarCarregando()" class="alert alert-warning">
           Carregando...
       </div>

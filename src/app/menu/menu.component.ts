@@ -17,7 +17,7 @@ import { IErro } from '../erro.interface.ts';
 export class MenuDocumentoComponent implements OnInit {
   private quantidadeMaxima : number = 10
   public mensagemDeErro: IErro;
-  private carregando : boolean = false;
+  public carregando: boolean;
   public items: Array<IPessoa> = [];
   public mainForm: FormGroup;
 
@@ -28,9 +28,10 @@ export class MenuDocumentoComponent implements OnInit {
       mascara: new FormControl(false),
       receitaWS: new FormControl(false),
       filtroSituacao: new FormControl<IFiltroSituacao>(IFiltroSituacao.Aleatorio),
-      filtroSocio: new FormControl<IFiltroSocio>(IFiltroSocio.Aleatorio)
+      filtroSocio: new FormControl<IFiltroSocio>(IFiltroSocio.Aleatorio),
     })
    this.mensagemDeErro = {mostrar: false, mensagem: "", tipo:"negocio"}
+   this.carregando = false
   }
 
   public clear() {
@@ -82,13 +83,12 @@ export class MenuDocumentoComponent implements OnInit {
          this.criarPessoaFisica(mascara);
       }
       else if(this.receitaWS.value && this.tipoPessoaFisica() == false){
-          this.criarPessoaJuridicaReceitaWS(mascara);
+          this.criarPessoaJuridicaReceitaWS();
       }
       else{
         this.criarPessoaJuridica(mascara);
       }
     }
-    this.carregando = false
   }
 
 
@@ -103,9 +103,10 @@ export class MenuDocumentoComponent implements OnInit {
         }
         pessoa.metadata = this.criarMetadataPessoaJuridica(pessoa);
         this.add(pessoa);
+        this.esconderCarregando()
   }
 
-  private criarPessoaJuridicaReceitaWS(mascara: boolean){
+  private criarPessoaJuridicaReceitaWS(){
   const pessoa: IPessoa = {
         criadoEm: new Date(),
         atualizadoEm: new Date(),
@@ -114,17 +115,20 @@ export class MenuDocumentoComponent implements OnInit {
         usado: false,
         receitaWS: true,
       }
-      this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value,this.filtroSituacao.value,  true).subscribe(response => {
+      this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value,this.filtroSituacao.value,  true)
+       .subscribe(response => {
             pessoa.documento = response.cnpj
             pessoa.metadata = this.criarMetadataReceitaWS(response);
-             this.add(pessoa);
+            this.add(pessoa);
+            this.esconderCarregando()
           },(error) => {
             this.mensagemDeErro.mensagem = `A solicitação para ${environment.envVar.baseUrl} falhou. \n ${error}`
             this.mensagemDeErro.mostrar = true
-      })
+        })
 
   }
   private criarPessoaFisica(mascara: boolean){
+
    const pessoa: IPessoa = {
         criadoEm: new Date(),
         atualizadoEm: new Date(),
@@ -135,6 +139,11 @@ export class MenuDocumentoComponent implements OnInit {
       }
       pessoa.metadata = this.criarMetadataPessoaFisica(pessoa)
       this.add(pessoa);
+      this.esconderCarregando()
+  }
+
+  private esconderCarregando(){
+      this.carregando = false
   }
 
   public add(pessoaModel: IPessoa) {
@@ -163,6 +172,8 @@ export class MenuDocumentoComponent implements OnInit {
   get filtroSituacao() {
     return this.mainForm.get('filtroSituacao')!;
   }
+
+
   get controls() {
     return this.mainForm.controls;
   }
