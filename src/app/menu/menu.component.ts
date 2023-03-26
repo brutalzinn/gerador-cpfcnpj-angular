@@ -56,7 +56,7 @@ export class MenuDocumentoComponent implements OnInit {
           nome: receitaws.nome,
           documento: documento,
           quantidadeSocios: receitaws.qsa.length,
-          cnae: receitaws.atividadePrincipal[0],
+          cnae: receitaws.atividadePrincipal[0].code,
           naturezaJuridica: receitaws.naturezaJuridica,
           razaoSocial: receitaws.porte
       }
@@ -75,14 +75,18 @@ export class MenuDocumentoComponent implements OnInit {
       if(pessoa.tipoPF) {
           pessoa.metadata = this.criarMetadataPF(pessoa);
       }
-      if(this.receitaWS && pessoa.tipoPF == false){
+      if(this.receitaWS.value && pessoa.tipoPF == false){
+          pessoa.documento = "Solicitando.."
           this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value, true).subscribe(response => {
+            pessoa.documento = response.cnpj
             pessoa.metadata = this.criarMetadataReceitaWS(response);
             pessoa.receitaWS = true;
-            pessoa.documento = response.cnpj
+          },(error) => {
+
           })
+      }else{
+            pessoa.metadata = this.criarMetadataPJ(pessoa);
       }
-      pessoa.metadata = this.criarMetadataPJ(pessoa);
       this.add(pessoa);
     }
   }
@@ -176,7 +180,6 @@ export class MenuDocumentoComponent implements OnInit {
   public mostrarOpcaoReceitaWS() : boolean{
     return this.tipoPessoaFisica() == false && this.receitaWS.value
   }
-
 
   public baixarArquivoDocumento() {
     let data = JSON.stringify(this.items);

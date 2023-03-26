@@ -16,14 +16,16 @@
             <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
                 <th scope="row">{{i + 1}}</th>
                 <td>
-              <div *ngIf="pessoa.tipoPF; else cnpjSHOW">
+              <div *ngIf="pessoa.tipoPF">
                 CPF
-                </div>
-              <ng-template #cnpjSHOW>
+              </div>
+              <div *ngIf="pessoa.tipoPF == false && pessoa.receitaWS == false">
                 CNPJ
-              </ng-template>
-
-                </td>
+              </div>
+              <div *ngIf="pessoa.tipoPF == false && pessoa.receitaWS">
+                CNPJ ReceitaWS
+              </div>
+              </td>
                 <td (click)="copiarDocumento(i)"> {{ pessoa.documento }}
                     <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">
                         {{ pessoa.documento }} copiado para transferência

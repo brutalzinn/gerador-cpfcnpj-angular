@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: "",
-  apiKey: ""
+  baseUrl: 'http://170.64.182.138',
+  apiKey: 'babayaga'
 };
 
 /*
