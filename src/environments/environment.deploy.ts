@@ -1,9 +1,9 @@
 export const environment = {
   production: false,
-  baseUrl: '',
-  apiKey: '',
+  baseUrl: "",
+  apiKey: "",
   envVar: {
-    baseUrl: 'http://example.com',
-    apiKey: "eujogolol"
+    baseUrl: "",
+    apiKey: ""
 }
 };
