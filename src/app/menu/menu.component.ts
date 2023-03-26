@@ -6,6 +6,7 @@ import { GeradorService } from '../gerador.service';
 import { HttpGeradorDeDadosService } from '../http-gerador-de-dados/http-gerador-de-dados.service';
 import { IReceitaWS } from '../receitaws.intefaces';
 import { FiltroSocio } from '../filtrosocio.enum';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -107,7 +108,7 @@ export class MenuDocumentoComponent implements OnInit {
             pessoa.metadata = this.criarMetadataReceitaWS(response);
              this.add(pessoa);
           },(error) => {
-            alert("A solicitação falhou. Coisa boa! Pega um café e relaxa!")
+            alert(`A solicitação para ${environment.envVar.baseUrl} falhou. Coisa boa! Pega um café e relaxa!`)
       })
 
   }
@@ -173,7 +174,7 @@ export class MenuDocumentoComponent implements OnInit {
     navigator.clipboard.writeText(documento).then(function () {
       console.log("Copiada para a área de transferência", documento);
     }, function (err) {
-      console.log("Ocorreu um erro ao copiar", documento);
+      console.log("Ocorreu um erro ao copiar e você só vai saber se abrir o console :)", documento);
     });
   }
 
@@ -200,7 +201,7 @@ export class MenuDocumentoComponent implements OnInit {
       reader.readAsText(event.target.files[0], 'utf-8');
     }
     catch (exception) {
-      console.log("Ocorreu um erro ao ler o arquivo")
+      console.log("Ocorreu um erro ao ler o arquivo e você só vai saber se abrir o console :)")
     }
   }
   public obterFiltroSocio () : FiltroSocio[]{
