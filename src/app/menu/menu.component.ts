@@ -14,12 +14,12 @@ import { environment } from 'src/environments/environment';
 })
 
 export class MenuDocumentoComponent implements OnInit {
-
+  private quantidadeMaxima : number = 10
   public items: Array<IPessoa> = [];
   public mainForm: FormGroup;
   constructor(private geradorDeDados: GeradorService, private httpGeradorDeDadosService: HttpGeradorDeDadosService) {
     this.mainForm = new FormGroup({
-      quantidade: new FormControl(1, [Validators.required, Validators.min(1),Validators.max(10), Validators.pattern("^[0-9]*$")]),
+      quantidade: new FormControl(1, [Validators.required, Validators.min(1),Validators.max(this.quantidadeMaxima), Validators.pattern("^[0-9]*$")]),
       tipo: new FormControl('cpf'),
       mascara: new FormControl(false),
       receitaWS: new FormControl(false),
@@ -65,9 +65,12 @@ export class MenuDocumentoComponent implements OnInit {
   }
 
   public criarPessoas() {
+    if(this.quantidade.invalid)
+    {
+      return
+    }
     let mascara: boolean = this.mascara.value;
     for (var i = 0; i < this.quantidade.value; i++) {
-
       if(this.tipoPessoaFisica()) {
          this.criarPessoaFisica(mascara);
       }
