@@ -21,7 +21,7 @@ export class HttpGeradorDeDadosService {
   };
 
   obterDadosReceitaWS(filtrosocio: FiltroSocio, normalizado: boolean) : Observable<IReceitaWS> {
-    return this.http.get<IReceitaWS>(`${environment.envVar.baseUrl}/obterCNPJValido/${filtrosocio}/Aleatorio/${normalizado}`, this.httpOptions);
+    return this.http.get<IReceitaWS>(`${environment.envVar.baseUrl}/obterCNPJValido/${filtrosocio}/Aleatorio/${normalizado}/false`, this.httpOptions);
   }
 
 }
