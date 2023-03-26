@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { IReceitaWS } from '../receitaws.intefaces';
 import { Observable } from 'rxjs';
 import { FiltroSocio } from '../filtrosocio.enum';
@@ -16,7 +16,7 @@ export class HttpGeradorDeDadosService {
   httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    Authorization: environment.apiKey
+    'ApiKey': environment.apiKey
   })
 };
   obterDadosReceitaWS(filtrosocio: FiltroSocio, normalizado: boolean) : Observable<IReceitaWS> {
