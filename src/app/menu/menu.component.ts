@@ -108,7 +108,7 @@ export class MenuDocumentoComponent implements OnInit {
             pessoa.metadata = this.criarMetadataReceitaWS(response);
              this.add(pessoa);
           },(error) => {
-            alert(`A solicitação para ${environment.envVar.baseUrl} falhou. Coisa boa! Pega um café e relaxa!`)
+            alert(`A solicitação para ${environment.envVar.baseUrl} falhou. Coisa boa! Pega um café e relaxa! \n ${error}`)
       })
 
   }
