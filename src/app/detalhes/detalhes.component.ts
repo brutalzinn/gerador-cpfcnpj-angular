@@ -27,16 +27,14 @@ export class DetalhesComponent implements OnInit {
     this.displayStyle = "none";
   }
 
-  copiarDado(item: any)
-  {
-    let chave = item.key;
-    let valor = item.value;
+  copiarDadoAreaTransferencia(valor: any)
+  {;
     navigator.clipboard.writeText(valor).then(function () {
       console.log("Copiada para a área de transferência", valor);
     }, function (err) {
       console.log("Ocorreu um erro ao copiar", valor);
     });
-    this.notificarDado(chave)
+    // this.notificarDado(chave)
   }
 
   notificarDado(chave: string){
@@ -51,7 +49,7 @@ export class DetalhesComponent implements OnInit {
 
   eventoMascaraToggle(event: any){
   let ativarMascara = event.target.checked
-  let aplicarMascara = ['rg', 'documento', 'cnae', 'naturezaJuridica']
+  let aplicarMascara = ['rg', 'documento', 'cnae', 'naturezaJuridica', 'cnaeAleatorio']
   for(let item in this.metadata){
     let valor = this.metadata[item]
   if(ativarMascara && aplicarMascara.includes(item))

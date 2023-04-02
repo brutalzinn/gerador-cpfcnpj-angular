@@ -1,24 +1,28 @@
-<!-- <h3>Please click on the below button open popup</h3>
-<hr />
-<button
-  style="margin: 50px; padding: 10px"
-  type="button"
-  class="btn btn-primary"
-  (click)="openPopup()">Show Data -->
-<!-- </button> -->
 <button class="btn btn-primary" (click)="openPopup()">Avançado</button>
 <div
   class="modal"
-  tabindex="-1"
-  role="dialog"
-  [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog" role="document">
+   tabindex="-1"
+   role="dialog"
+   aria-hidden="true"
+  [ngStyle]="{'display':this.displayStyle}"
+  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Detalhes</h4>
+        <div class="modal-title">
+        <h3>Detalhes</h3>
+        <br/>
+        <h4>Documento: {{this.metadata.documento}}</h4>
+        <button type="button" class="btn btn-light" (click)="copiarDadoAreaTransferencia(this.metadata.documento)">Copiar documento</button>
+
+        </div>
+         <button type="button" class="close" data-dismiss="modal" (click)="closePopup()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+
       <div class="modal-body">
-          <div class="input-group mb-3">
+      <div class="input-group mb-3">
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" (change)="eventoMascaraToggle($event)">
             <label class="form-check-label" for="mascara">Máscara</label>
@@ -30,22 +34,17 @@
         </b>
       <div class="input-group mb-3">
          <input class="form-control" name="data" value="{{item.value}}" type="text">
-         <button type="button" class="btn btn-light" (click)="copiarDado(item)">Copiar</button>
+         <button type="button" class="btn btn-light" (click)="this.copiarDadoAreaTransferencia(item.value)">Copiar</button>
       </div>
 
       <div id="alert-{{this.documento}}-{{item.key}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">
           {{ item.key }} copiado para transferência
       </div>
     </div>
-
-<!--
-        <p>Documento: {{this.metadata.documento}}</p>
-
-        <p>RG: {{this.metadata.rg}}</p> -->
-      </div>
+    </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger"
-                (click)="closePopup()">
+                (click)="closePopup()"  data-dismiss="modal">
           Fechar
         </button>
       </div>

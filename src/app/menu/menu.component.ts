@@ -61,13 +61,24 @@ export class MenuDocumentoComponent implements OnInit {
     private criarMetadataReceitaWS(receitaws: IReceitaWS) : object {
       let documento = receitaws.cnpj.replace(/[^\w\s]/gi, '')
       return {
+          documento,
           nome: receitaws.nome,
-          documento: documento,
+          nomeFantasia: receitaws.fantasia,
+          tipo: receitaws.tipo,
           quantidadeSocios: receitaws.qsa.length,
           cnae: receitaws.atividadePrincipal[0].code,
           cnaeAleatorio: this.geradorDeDados.cnae(false),
           naturezaJuridica: receitaws.naturezaJuridica,
-          razaoSocial: receitaws.porte
+          razaoSocial: receitaws.porte,
+          motivoSituacao: receitaws.motivoSituacao,
+          dataSituacao: receitaws.dataSituacao,
+          nomeSocioPrincipal: receitaws?.qsa[0]?.nome ?? "",
+          nomeTituloSocioPrincipal: receitaws?.qsa[0]?.qual ?? "",
+          capitalSocial: receitaws.capitalSocial,
+          cep: receitaws.cep,
+          logradouro: receitaws.logradouro,
+          numero: receitaws.numero,
+          telefone: receitaws.telefone,
       }
   }
 
