@@ -127,7 +127,7 @@ export class MenuDocumentoComponent implements OnInit {
         usado: false,
         receitaWS: true,
       }
-      this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value,this.filtroSituacao.value,  true)
+      this.httpGeradorDeDadosService.obterDadosReceitaWS(this.filtroSocio.value,this.filtroSituacao.value, true, false)
        .subscribe(response => {
             pessoa.documento = response.cnpj
             pessoa.metadata = this.criarMetadataReceitaWS(response);

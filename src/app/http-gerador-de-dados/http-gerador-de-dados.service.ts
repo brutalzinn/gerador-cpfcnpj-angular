@@ -20,8 +20,8 @@ export class HttpGeradorDeDadosService {
   })
   };
 
-  obterDadosReceitaWS(filtrosocio: IFiltroSocio, filtroSituacao: IFiltroSituacao, normalizado: boolean) : Observable<IReceitaWS> {
-    return this.http.get<IReceitaWS>(`${environment.envVar.baseUrl}/obterCNPJValido/${filtrosocio}/${filtroSituacao}/${normalizado}/false`, this.httpOptions);
+  obterDadosReceitaWS(filtrosocio: IFiltroSocio, filtroSituacao: IFiltroSituacao, normalizado: boolean, excluirCache: boolean) : Observable<IReceitaWS> {
+    return this.http.get<IReceitaWS>(`${environment.envVar.baseUrl}/obterCNPJValido/${filtrosocio}/${filtroSituacao}/${normalizado}/${excluirCache}`, this.httpOptions);
   }
 
 }
