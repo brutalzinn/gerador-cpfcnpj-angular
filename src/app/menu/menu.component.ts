@@ -134,7 +134,7 @@ export class MenuDocumentoComponent implements OnInit {
             this.add(pessoa);
             this.esconderCarregando()
           },(error) => {
-            this.mensagemDeErro.mensagem = `A solicitação para ${environment.envVar.baseUrl} falhou. \n ${error}`
+            this.mensagemDeErro.mensagem = `A solicitação para ${environment.envVar.baseUrl} falhou. \n ${error.error.Mensagem}`
             this.mensagemDeErro.mostrar = true
         })
 
