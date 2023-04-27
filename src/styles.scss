@@ -1,0 +1,87 @@
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+@import "/node_modules/bootstrap/scss/mixins";
+@import "/node_modules/bootstrap/scss/maps";
+@import "/node_modules/bootstrap/scss/utilities";
+@import "/node_modules/bootstrap/scss/helpers";
+@import "/node_modules/bootstrap/scss/utilities/api";
+
+[data-bs-theme="blue"] {
+  --bs-body-color: var(--bs-white);
+  --bs-body-color-rgb: #{to-rgb($white)};
+  --bs-body-bg: var(--bs-blue);
+  --bs-body-bg-rgb: #{to-rgb($blue)};
+  --bs-tertiary-bg: #{$blue-600};
+
+  .dropdown-menu {
+    --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
+    --bs-dropdown-link-active-bg: #{$blue-700};
+  }
+
+  .btn-secondary {
+    --bs-btn-bg: #{mix($gray-600, $blue-400, .5)};
+    --bs-btn-border-color: #{rgba($white, .25)};
+    --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, .5), 5%)};
+    --bs-btn-hover-border-color: #{rgba($white, .25)};
+    --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5), 10%)};
+    --bs-btn-active-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+  }
+}
+
+[data-bs-theme="dark"] {
+
+
+  $normal_dark: $gray-500;
+  $high_dark: $gray-900;
+  $medium_dark: $gray-700;
+
+  --bs-body-color: var(--bs-white);
+  --bs-body-color-rgb: to-rgb($white);
+  --bs-body-bg: var(--bs-dark);
+  --bs-body-bg-rgb: to-rgb($normal_dark);
+  --bs-tertiary-bg: $normal_dark;
+
+  .dropdown-menu {
+    --bs-dropdown-bg: mix($normal_dark, $high_dark);
+    --bs-dropdown-link-active-bg: $medium_dark;
+  }
+
+  .btn-primary {
+    --bs-btn-bg: #{mix($medium_dark, $normal_dark, .5)};
+    --bs-btn-border-color: #{rgba($white, .25)};
+    --bs-btn-hover-bg: #{darken(mix($medium_dark, $normal_dark, .5), 5%)};
+    --bs-btn-hover-border-color: #{rgba($white, .25)};
+    --bs-btn-active-bg: #{darken(mix($medium_dark, $normal_dark, .5), 10%)};
+    --bs-btn-active-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+  }
+
+  .btn-secondary {
+    --bs-btn-bg: #{mix($medium_dark, $normal_dark, .5)};
+    --bs-btn-border-color: #{rgba($white, .25)};
+    --bs-btn-hover-bg: #{darken(mix($medium_dark, $normal_dark, .5), 5%)};
+    --bs-btn-hover-border-color: #{rgba($white, .25)};
+    --bs-btn-active-bg: #{darken(mix($medium_dark, $normal_dark, .5), 10%)};
+    --bs-btn-active-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+  }
+.modal-body
+{
+  background-color: var(--bs-dark);
+}
+
+.modal-footer
+{
+  background-color: var(--bs-dark);
+}
+
+.modal-header
+{
+  background-color: var(--bs-dark);
+}
+
+}

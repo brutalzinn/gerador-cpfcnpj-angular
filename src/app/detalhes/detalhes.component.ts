@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import $ from 'jquery';
-import { GeradorService } from '../gerador.service';
+import { GeradorService } from '../services/gerador.service';
 
 @Component({
   selector: 'app-detalhes',
@@ -17,6 +17,8 @@ export class DetalhesComponent implements OnInit {
   ngOnInit(): void {
     this.documento = this.metadata.documento.replace(/[^\w\s]/gi, '')
   }
+
+
 
   displayStyle = "none";
 

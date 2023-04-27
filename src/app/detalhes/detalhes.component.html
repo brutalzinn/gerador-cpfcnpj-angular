@@ -1,4 +1,4 @@
-<button class="btn btn-primary" (click)="openPopup()">Avançado</button>
+<button class="btn btn-secondary" (click)="openPopup()">Avançado</button>
 <div
   class="modal"
    tabindex="-1"
@@ -34,7 +34,7 @@
         </b>
       <div class="input-group mb-3">
          <input class="form-control" name="data" value="{{item.value}}" type="text">
-         <button type="button" class="btn btn-light" (click)="this.copiarDadoAreaTransferencia(item.value)">Copiar</button>
+         <button type="button" class="btn btn-primary" (click)="this.copiarDadoAreaTransferencia(item.value)">Copiar</button>
       </div>
 
       <div id="alert-{{this.documento}}-{{item.key}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">

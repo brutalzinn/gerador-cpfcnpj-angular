@@ -1,5 +1,12 @@
 # Gerador CPF e CNPJ
-
 # Em desenvolvimento
 
-https://gerador-cpfcnpj-angular.vercel.app/
+### Front desenvolvido com Angular 14
+
+## URL
+
+https://util.robertocpaes.dev
+
+## API
+
+https://github.com/brutalzinn/gerador-de-dados

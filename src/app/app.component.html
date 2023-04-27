@@ -1,9 +1,11 @@
-<h1>Gerador de CPF CNPJ</h1>
-<app-header></app-header>
-<div id="menu">
-<app-menu></app-menu>
+<app-acessibilidade></app-acessibilidade>
+<app-menu ></app-menu>
 
-    <table class="table">
+    <div *ngIf="pessoas.length == 0; else documentoTable" >
+        <h1>Nenhum documento gerado :(</h1>
+    </div>
+    <ng-template #documentoTable>
+    <table class="table" #tableShow>
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -27,7 +29,7 @@
               </div>
               </td>
                 <td (click)="copiarDocumento(i)"> {{ pessoa.documento }}
-                    <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: 75%;" role="alert">
+                    <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: auto;" role="alert">
                         {{ pessoa.documento }} copiado para transferência
                     </div>
                 </td>
@@ -41,7 +43,7 @@
               </ng-template>
                  </td>
                 <td>
-                    <button type="button" (click)="alternarUsado(i)" class="btn btn-light">{{ pessoa.usado ? "Desmarcar
+                    <button type="button" (click)="alternarUsado(i)" class="btn btn-secondary">{{ pessoa.usado ? "Desmarcar
                         uso" : "Marcar usado"
                         }}
                       </button>
@@ -51,7 +53,7 @@
                 </td>
 
                 <td>
-                    <button type="button" (click)="copiarDocumento(i)" class="btn btn-light">Copiar documento</button>
+                    <button type="button" (click)="copiarDocumento(i)" class="btn btn-secondary">Copiar documento</button>
                 </td>
                 <td>
                     <button type="button" (click)="excluirDocumento(i)" class="btn btn-danger">Excluir</button>
@@ -59,6 +61,5 @@
             </tr>
         </tbody>
     </table>
-
-</div>
+    </ng-template>
 <app-footer></app-footer>

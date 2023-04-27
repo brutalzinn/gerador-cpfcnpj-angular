@@ -1,12 +1,13 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs/internal/observable/timer';
 import { MenuDocumentoComponent } from './menu/menu.component';
 import $ from 'jquery';
 import { IPessoa } from './pessoa.interface';
+import { AcessibilidadeService } from './services/acessibilidade.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit {
 
@@ -14,15 +15,23 @@ export class AppComponent implements AfterViewInit {
 
   title = 'Gerador CPFCNPJ';
 
-  constructor() {
+  constructor (private acessibilidadeService: AcessibilidadeService, private renderer: Renderer2) {}
 
-  }
   public pessoas: Array<IPessoa> = [];
 
 
   ngAfterViewInit() {
     timer(1500).subscribe(() => {
       this.pessoas = this.child.items
+    })
+  }
+
+    ngOnInit(): void {
+    this.acessibilidadeService.themeChanges().subscribe(theme => {
+      if (theme.oldValue) {
+        this.renderer.setAttribute(document.body, "data-bs-theme", theme.oldValue);
+      }
+      this.renderer.setAttribute(document.body, "data-bs-theme", theme.newValue);
     })
   }
 

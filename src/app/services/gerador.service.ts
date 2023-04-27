@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import cnaeMock from "./mocks/cnae.json";
-import naturezaMock from "./mocks/natureza.json";
-import razaoSocialMock from "./mocks/razao_social.json";
+import cnaeMock from "../mocks/cnae.json";
+import naturezaMock from "../mocks/natureza.json";
+import razaoSocialMock from "../mocks/razao_social.json";
 @Injectable({
   providedIn: 'root'
 })
