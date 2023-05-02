@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IPessoa } from '../pessoa.interface';
+import { IPessoa } from '../interfaces/pessoa.interface';
 import { saveAs } from 'file-saver';
 import { GeradorService } from '../services/gerador.service';
 import { HttpGeradorDeDadosService } from '../services/http-gerador-de-dados.service';
-import { IReceitaWS } from '../receitaws.intefaces';
-import { IFiltroSituacao, IFiltroSocio } from '../filtro.interface';
+import { IReceitaWS } from '../interfaces/receitaws.intefaces';
+import { IFiltroSituacao, IFiltroSocio } from '../interfaces/filtro.interface';
 import { environment } from 'src/environments/environment';
-import { IErro } from '../erro.interface.ts';
+import { IErro } from '../interfaces/erro.interface';
 
 @Component({
   selector: 'app-menu',

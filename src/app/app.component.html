@@ -1,65 +1,98 @@
-<app-acessibilidade></app-acessibilidade>
-<app-menu ></app-menu>
-
-    <div *ngIf="pessoas.length == 0; else documentoTable" >
-        <h1>Nenhum documento gerado :(</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-auto">
+        <h1>Gerador de documentos v0.0.1</h1>
     </div>
-    <ng-template #documentoTable>
-    <table class="table" #tableShow>
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Documento</th>
-                <th scope="col">Criado em</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
-                <th scope="row">{{i + 1}}</th>
-                <td>
-              <div *ngIf="pessoa.tipoPF">
-                CPF
-              </div>
-              <div *ngIf="pessoa.tipoPF == false && pessoa.receitaWS == false">
-                CNPJ
-              </div>
-              <div *ngIf="pessoa.tipoPF == false && pessoa.receitaWS">
-                CNPJ ReceitaWS
-              </div>
-              </td>
-                <td (click)="copiarDocumento(i)"> {{ pessoa.documento }}
-                    <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: auto;" role="alert">
-                        {{ pessoa.documento }} copiado para transferência
-                    </div>
-                </td>
-                <td> {{ pessoa.criadoEm.toLocaleString("pt-BR") }}</td>
-                <td>
-                <div *ngIf="pessoa.usado; else elseBlockShow">
-                <span class="text-danger">Em uso</span>
-                </div>
-              <ng-template #elseBlockShow>
-                <span class="text-success">Disponível</span>
-              </ng-template>
-                 </td>
-                <td>
-                    <button type="button" (click)="alternarUsado(i)" class="btn btn-secondary">{{ pessoa.usado ? "Desmarcar
-                        uso" : "Marcar usado"
-                        }}
-                      </button>
-                </td>
-                <td>
-                <app-detalhes [metadata]="pessoa.metadata"></app-detalhes>
-                </td>
+  </div>
+    <div class="row justify-content-md-end">
+        <div class="col col-lg-auto">
+           <app-acessibilidade></app-acessibilidade>
+        </div>
+    </div>
+  <div class="row">
+    <div class="col">
+        <app-menu ></app-menu>
+    </div>
+  </div>
 
-                <td>
-                    <button type="button" (click)="copiarDocumento(i)" class="btn btn-secondary">Copiar documento</button>
-                </td>
-                <td>
-                    <button type="button" (click)="excluirDocumento(i)" class="btn btn-danger">Excluir</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </ng-template>
-<app-footer></app-footer>
+  <div class="row justify-content-md-center">
+          <div class="col col-lg-auto">
+                <div *ngIf="pessoas.length == 0; else documentoTable" >
+                  <h1>Nenhum documento gerado :(</h1>
+                </div>
+          <ng-template #documentoTable>
+          <table class="table" #tableShow>
+              <thead>
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Documento</th>
+                      <th scope="col">Criado em</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let pessoa of pessoas; let i = index" [attr.data-index]="i">
+                      <th scope="row">{{i + 1}}</th>
+                      <td>
+                    <div *ngIf="pessoa.tipoPF">
+                      CPF
+                    </div>
+                    <div *ngIf="pessoa.tipoPF == false && pessoa.receitaWS == false">
+                      CNPJ
+                    </div>
+                    <div *ngIf="pessoa.tipoPF == false && pessoa.receitaWS">
+                      CNPJ ReceitaWS
+                    </div>
+                    </td>
+                      <td (click)="copiarDocumento(i)"> {{ pessoa.documento }}
+                          <div id="alert-{{i}}" class="alert alert-info" style="display:none; width: auto;" role="alert">
+                              {{ pessoa.documento }} copiado para transferência
+                          </div>
+                      </td>
+                      <td> {{ pessoa.criadoEm.toLocaleString("pt-BR") }}</td>
+                      <td>
+                      <div *ngIf="pessoa.usado; else elseBlockShow">
+                      <span class="text-danger">Em uso</span>
+                      </div>
+                    <ng-template #elseBlockShow>
+                      <span class="text-success">Disponível</span>
+                    </ng-template>
+                      </td>
+                      <td>
+                          <button type="button" (click)="alternarUsado(i)" class="btn btn-secondary">{{ pessoa.usado ? "Desmarcar
+                              uso" : "Marcar usado"
+                              }}
+                            </button>
+                      </td>
+                      <td>
+                      <app-detalhes [metadata]="pessoa.metadata"></app-detalhes>
+                      </td>
+
+                      <td>
+                          <button type="button" (click)="copiarDocumento(i)" class="btn btn-secondary">Copiar documento</button>
+                      </td>
+                      <td>
+                          <button type="button" (click)="excluirDocumento(i)" class="btn btn-danger">Excluir</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+          </ng-template>
+    </div>
+
+  </div>
+
+      <div class="row">
+          <div class="col">
+              <app-footer></app-footer>
+          </div>
+      </div>
+
+
+</div>
+
+
+
+
+
+

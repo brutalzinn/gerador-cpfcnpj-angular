@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { IReceitaWS } from '../receitaws.intefaces';
+import { IReceitaWS } from '../interfaces/receitaws.intefaces';
 import { Observable } from 'rxjs';
-import { IFiltroSituacao, IFiltroSocio } from '../filtro.interface';
+import { IFiltroSituacao, IFiltroSocio } from '../interfaces/filtro.interface';
 
 @Injectable({
   providedIn: 'root'

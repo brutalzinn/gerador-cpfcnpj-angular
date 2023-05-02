@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { TemaInterface } from '../interfaces/tema.interface';
 
-export interface ThemeObject {
-  oldValue: string;
-  newValue: string;
-};
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AcessibilidadeService {
 
- initialSetting: ThemeObject = {
+ initialSetting: TemaInterface = {
     oldValue: '',
     newValue: 'light'
   };
 
-  themeSelection: BehaviorSubject<ThemeObject> =  new BehaviorSubject<ThemeObject>(this.initialSetting);
+  themeSelection: BehaviorSubject<TemaInterface> =  new BehaviorSubject<TemaInterface>(this.initialSetting);
 
   constructor() {
       let storageTheme = this.getTheme()
@@ -32,7 +30,7 @@ export class AcessibilidadeService {
       localStorage.setItem("theme", theme)
   }
 
-  themeChanges(): Observable<ThemeObject> {
+  themeChanges(): Observable<TemaInterface> {
     return this.themeSelection.asObservable();
   }
 

@@ -2,7 +2,7 @@ import { Component, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
 import { timer } from 'rxjs/internal/observable/timer';
 import { MenuDocumentoComponent } from './menu/menu.component';
 import $ from 'jquery';
-import { IPessoa } from './pessoa.interface';
+import { IPessoa } from './interfaces/pessoa.interface';
 import { AcessibilidadeService } from './services/acessibilidade.service';
 
 @Component({
