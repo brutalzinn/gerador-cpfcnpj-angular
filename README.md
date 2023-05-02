@@ -1,5 +1,5 @@
-# Gerador CPF e CNPJ
-## Front desenvolvido com Angular 14
+# Front Gerador CPF e CNPJ
+## desenvolvido com Angular 14
 
 Meu primeiro projeto usando Angular.
 
@@ -14,7 +14,7 @@ Meu primeiro projeto usando Angular.
 # Recursos
 
 - Cria uma lista de CPF/CNPJ dado uma quantidade especificada
-- Gera CNPJ válido usando cache da ReceitaWS
+- Gera CNPJ válido
 - Modo escuro
 - Exportar/Importar lista de CPF/CNPJ gerados
 
