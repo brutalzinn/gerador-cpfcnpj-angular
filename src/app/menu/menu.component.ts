@@ -39,11 +39,13 @@ export class MenuDocumentoComponent implements OnInit {
     ///infelizmente o observer não enxerga essa alteração.
     // this.items = [];
   }
+  
 
   private criarMetadataPessoaFisica(pessoa : IPessoa) : object{
       let documento = pessoa.documento.replace(/[^\w\s]/gi, '')
       return {
             documento: documento,
+            email: this.geradorDeDados.gerarTuaMaeAquelaUrsaEmail(),
             rg: this.geradorDeDados.rg(false),
             DataNascimento: this.geradorDeDados.DataNascimento().toLocaleDateString(),
         }
@@ -53,6 +55,7 @@ export class MenuDocumentoComponent implements OnInit {
       let documento = pessoa.documento.replace(/[^\w\s]/gi, '')
       return {
           documento: documento,
+          email: this.geradorDeDados.gerarTuaMaeAquelaUrsaEmail(),
           cnae: this.geradorDeDados.cnae(false),
           naturezaJuridica: this.geradorDeDados.naturezaJuridica(false),
           razaoSocial: this.geradorDeDados.razaoSocial()
@@ -62,6 +65,7 @@ export class MenuDocumentoComponent implements OnInit {
       let documento = receitaws.cnpj.replace(/[^\w\s]/gi, '')
       return {
           documento,
+          email: this.geradorDeDados.gerarTuaMaeAquelaUrsaEmail(),
           nome: receitaws.nome,
           nomeFantasia: receitaws.fantasia,
           tipo: receitaws.tipo,

@@ -15,7 +15,11 @@ export class GeradorService {
   public text_to_array = (texto: string) =>  texto.split('');
 
 
-
+  public gerarTuaMaeAquelaUrsaEmail(){
+      let email = "https://tuamaeaquelaursa.com/"
+      let randomStr = (Math.random() + 1).toString(36).substring(7);
+      return email + randomStr
+  }
   public aplicarMascara(text: string){
   //preciso tratar isso para remover qualquer tipo de formatação no string.
   text = text.replace(/[^\w\s]/gi, '')

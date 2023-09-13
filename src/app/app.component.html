@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-auto">
-        <h1>Gerador de documentos v0.0.1</h1>
+        <h1>Gerador de documentos</h1>
     </div>
   </div>
     <div class="row justify-content-md-end">
@@ -14,7 +14,6 @@
         <app-menu ></app-menu>
     </div>
   </div>
-
   <div class="row justify-content-md-center">
           <div class="col col-lg-auto">
                 <div *ngIf="pessoas.length == 0; else documentoTable" >
@@ -81,7 +80,11 @@
     </div>
 
   </div>
-
+ <div class="row justify-content-md-end">
+         <div class="col col-lg-auto">
+            <app-tips></app-tips>
+         </div>
+  </div>
       <div class="row">
           <div class="col">
               <app-footer></app-footer>

@@ -9,6 +9,9 @@ import { MenuDocumentoComponent } from './menu/menu.component';
 import { GeradorService } from './services/gerador.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AcessibilidadeComponent } from './acessibilidade/acessibilidade.component';
+import { TipsComponent } from './tips/tips.component';
+import { QRCodeModule } from 'angular2-qrcode';
+
 
 @NgModule({
   declarations: [
@@ -17,10 +20,12 @@ import { AcessibilidadeComponent } from './acessibilidade/acessibilidade.compone
     FooterComponent,
     DetalhesComponent,
     AcessibilidadeComponent,
+    TipsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    QRCodeModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],

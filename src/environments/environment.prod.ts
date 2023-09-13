@@ -3,6 +3,7 @@ export const environment = {
   production: true,
   envVar: {
       baseUrl: "",
-      apiKey: ""
+      apiKey: "",
+      tipsTime: 300000
   }
 };

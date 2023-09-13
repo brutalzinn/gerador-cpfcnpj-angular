@@ -5,8 +5,10 @@
 export const environment = {
   production: false,
   envVar: {
-      baseUrl: "https://geradordedocumentos.boberto.net",
-      apiKey: "naruto"
+      baseUrl: "",
+      apiKey: "",
+      tipsTime: 30000,
+      chavePix: "00020126580014BR.GOV.BCB.PIX0136ef9156c5-2412-444c-8199-7d28e4a673f85204000053039865802BR5921ROBERTO CARNEIRO PAES6009SAO PAULO61080540900062130509cafedodev63049FB5"
   }
 };
 

@@ -6,12 +6,8 @@
 @import "/node_modules/bootstrap/scss/helpers";
 @import "/node_modules/bootstrap/scss/utilities/api";
 
-[data-bs-theme="blue"] {
-  --bs-body-color: var(--bs-white);
-  --bs-body-color-rgb: #{to-rgb($white)};
-  --bs-body-bg: var(--bs-blue);
-  --bs-body-bg-rgb: #{to-rgb($blue)};
-  --bs-tertiary-bg: #{$blue-600};
+[data-bs-theme="light"] {
+
 
   .dropdown-menu {
     --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
@@ -28,6 +24,25 @@
     --bs-btn-focus-border-color: #{rgba($white, .5)};
     --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
   }
+
+
+  .meu-sticky {
+    position: absolute;
+    right: 0;
+    width: 500px;
+  }
+
+  .meu-sticky .card {
+    position: fixed;
+    top: calc(100vh - 7rem);
+    background: #{$light};
+    padding: 3rem;
+    color: #{darken(mix($light, $gray-700, .5), 5%)};
+    box-shadow: 0 0 30px rgba(0,0,0, .08);
+    width: 100%;
+    transform: translateY(-20em);
+  }
+
 }
 
 [data-bs-theme="dark"] {
@@ -83,5 +98,22 @@
 {
   background-color: var(--bs-dark);
 }
+
+  .meu-sticky {
+    position: absolute;
+    right: 0;
+    width: 500px;
+  }
+
+  .meu-sticky .card {
+    position: fixed;
+    top: calc(100vh - 7rem);
+    background: #{$normal_dark};
+    padding: 3rem;
+    color: #{darken(mix($normal_dark, $high_dark, .5), 5%)};
+    box-shadow: 0 0 30px rgba(0,0,0, .08);
+    width: 100%;
+    transform: translateY(-20em);
+  }
 
 }
