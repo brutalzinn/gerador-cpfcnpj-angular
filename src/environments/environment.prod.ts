@@ -4,6 +4,7 @@ export const environment = {
   envVar: {
       baseUrl: "",
       apiKey: "",
-      tipsTime: 300000
+      tipsTime: 300000,
+      chavePix:""
   }
 };
